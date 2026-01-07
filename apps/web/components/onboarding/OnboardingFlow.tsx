@@ -149,7 +149,7 @@ export function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowProps) {
                   </p>
                   <RadioGroup
                     value={data.experiencia}
-                    onValueChange={(v) => setData({ ...data, experiencia: v })}
+                    onValueChange={(v: string) => setData({ ...data, experiencia: v })}
                     className="space-y-3"
                   >
                     {EXPERIENCIAS.map((exp) => (
