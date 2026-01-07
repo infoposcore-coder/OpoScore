@@ -10,8 +10,8 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // Añadir config vacía de turbopack para silenciar el warning
-  // y permitir que next-pwa funcione con webpack
+  // Configuración vacía de turbopack para silenciar el error
+  // next-pwa añade config de webpack, esto le dice a Next.js que está bien
   turbopack: {},
 };
 
