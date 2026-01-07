@@ -1,0 +1,19 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /estudiar/
+Disallow: /progreso/
+Disallow: /simulacros/
+Disallow: /perfil/
+Disallow: /tutor/
+
+# Host
+Host: https://oposcore.es
+
+# Sitemaps
+Sitemap: https://oposcore.es/sitemap.xml

@@ -1,0 +1,19 @@
+{
+  "name": "oposcore",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspace=apps/web",
+    "start": "npm run start --workspace=apps/web",
+    "lint": "npm run lint --workspace=apps/web",
+    "db:push": "supabase db push",
+    "db:seed": "supabase db seed",
+    "db:reset": "supabase db reset",
+    "db:types": "supabase gen types typescript --local > apps/web/types/database.ts"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
