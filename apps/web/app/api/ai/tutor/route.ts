@@ -5,6 +5,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { chatWithCache, type ChatMessage } from '@/lib/ai/groq'
 import { buildTutorPrompt } from '@/lib/ai/prompts'
+import { checkRateLimit, getRateLimitIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
 
 // Detectar modo demo
 const DEMO_MODE = !process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -18,6 +19,9 @@ interface TutorRequest {
 
 export async function POST(request: NextRequest) {
   try {
+    let userId: string | undefined
+    let isPremium = false
+
     // En modo producción, verificar autenticación
     if (!DEMO_MODE) {
       const { createClient } = await import('@/lib/supabase/server')
@@ -30,6 +34,40 @@ export async function POST(request: NextRequest) {
           { status: 401 }
         )
       }
+
+      userId = user.id
+
+      // Verificar si es premium para rate limiting más generoso
+      const { data: subscription } = await supabase
+        .from('subscriptions')
+        .select('status')
+        .eq('user_id', user.id)
+        .in('status', ['active', 'trialing'])
+        .single()
+
+      isPremium = !!subscription
+    }
+
+    // Rate limiting
+    const identifier = getRateLimitIdentifier(request, userId)
+    const rateLimit = isPremium ? RATE_LIMITS.ai : RATE_LIMITS.aiFree
+    const { allowed, remaining, resetIn } = checkRateLimit(identifier, rateLimit)
+
+    if (!allowed) {
+      return NextResponse.json(
+        {
+          error: 'Demasiadas solicitudes. Por favor, espera un momento.',
+          resetIn,
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': String(resetIn),
+            'Retry-After': String(resetIn),
+          },
+        }
+      )
     }
 
     const body: TutorRequest = await request.json()
@@ -57,10 +95,18 @@ export async function POST(request: NextRequest) {
       max_tokens: 1024,
     })
 
-    return NextResponse.json({
-      respuesta,
-      timestamp: new Date().toISOString(),
-    })
+    return NextResponse.json(
+      {
+        respuesta,
+        timestamp: new Date().toISOString(),
+      },
+      {
+        headers: {
+          'X-RateLimit-Remaining': String(remaining),
+          'X-RateLimit-Reset': String(resetIn),
+        },
+      }
+    )
   } catch (error) {
     console.error('Tutor API error:', error)
     return NextResponse.json(
