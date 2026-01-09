@@ -9,7 +9,7 @@ import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 
 export function ThemeToggle() {
-  const { setTheme, theme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
@@ -26,14 +26,10 @@ export function ThemeToggle() {
   }
 
   const toggleTheme = () => {
-    // Ciclar entre light -> dark -> system
-    if (theme === 'light') {
-      setTheme('dark')
-    } else if (theme === 'dark') {
-      setTheme('system')
-    } else {
-      setTheme('light')
-    }
+    // Alternar basándose en el tema VISIBLE (resolvedTheme)
+    // Si se ve claro -> cambiar a oscuro
+    // Si se ve oscuro -> cambiar a claro
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
   }
 
   // Usar resolvedTheme para mostrar el icono correcto
@@ -45,7 +41,7 @@ export function ThemeToggle() {
       size="icon"
       className="w-9 h-9"
       onClick={toggleTheme}
-      title={`Tema actual: ${theme === 'system' ? 'sistema' : theme === 'dark' ? 'oscuro' : 'claro'}`}
+      title={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
     >
       {isDark ? (
         // Luna para modo oscuro
