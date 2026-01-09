@@ -1,5 +1,6 @@
 // ===========================================
 // OpoScore - Página de Simulacros
+// Requiere plan Premium o superior
 // ===========================================
 
 'use client'
@@ -15,6 +16,7 @@ import { Label } from '@/components/ui/label'
 import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
+import { PlanGate } from '@/components/billing/PlanGate'
 
 // Detectar modo demo
 const DEMO_MODE = !process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -517,16 +519,18 @@ function SimulacrosContent() {
 
 export default function SimulacrosPage() {
   return (
-    <Suspense fallback={
-      <div className="container py-8 max-w-2xl mx-auto">
-        <Card>
-          <CardContent className="py-12 text-center">
-            <p className="text-muted-foreground">Cargando simulacros...</p>
-          </CardContent>
-        </Card>
-      </div>
-    }>
-      <SimulacrosContent />
-    </Suspense>
+    <PlanGate feature="simulacros">
+      <Suspense fallback={
+        <div className="container py-8 max-w-2xl mx-auto">
+          <Card>
+            <CardContent className="py-12 text-center">
+              <p className="text-muted-foreground">Cargando simulacros...</p>
+            </CardContent>
+          </Card>
+        </div>
+      }>
+        <SimulacrosContent />
+      </Suspense>
+    </PlanGate>
   )
 }

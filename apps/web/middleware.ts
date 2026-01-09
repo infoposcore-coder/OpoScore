@@ -1,6 +1,10 @@
 // ===========================================
 // OpoScore - Next.js Middleware
 // ===========================================
+// Maneja autenticación básica.
+// La protección por plan (premium/elite) se maneja
+// con el componente PlanGate en cada página.
+// ===========================================
 
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
@@ -12,6 +16,16 @@ interface CookieToSet {
   options?: Record<string, unknown>
 }
 
+// Rutas que requieren autenticación
+const protectedRoutes = ['/dashboard', '/estudiar', '/progreso', '/simulacros', '/perfil', '/tutor']
+
+// Rutas de autenticación (redirigir a dashboard si ya está logueado)
+const authRoutes = ['/login', '/register']
+
+// Rutas que requieren plan premium (tutor_ia incluido en premium)
+// La verificación se hace con PlanGate en el cliente
+// const premiumRoutes = ['/simulacros', '/tutor']
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
 
@@ -19,9 +33,7 @@ export async function middleware(req: NextRequest) {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   // MODO DEMO: Si no hay Supabase configurado, permitir acceso
-  // Verificar que las variables no sean vacías ni undefined
   if (!supabaseUrl || supabaseUrl.trim() === '' || !supabaseAnonKey || supabaseAnonKey.trim() === '') {
-    // En modo demo, permitir acceso a todas las rutas
     return res
   }
 
@@ -44,22 +56,22 @@ export async function middleware(req: NextRequest) {
 
   const { data: { session } } = await supabase.auth.getSession()
 
-  const protectedRoutes = ['/dashboard', '/estudiar', '/progreso', '/simulacros', '/perfil', '/tutor']
   const isProtectedRoute = protectedRoutes.some(route =>
     req.nextUrl.pathname.startsWith(route)
   )
 
-  const authRoutes = ['/login', '/register']
   const isAuthRoute = authRoutes.some(route =>
     req.nextUrl.pathname.startsWith(route)
   )
 
+  // Redirigir a login si intenta acceder a ruta protegida sin sesión
   if (isProtectedRoute && !session) {
     const redirectUrl = new URL('/login', req.url)
     redirectUrl.searchParams.set('redirectTo', req.nextUrl.pathname)
     return NextResponse.redirect(redirectUrl)
   }
 
+  // Redirigir a dashboard si ya tiene sesión y accede a login/register
   if (isAuthRoute && session) {
     return NextResponse.redirect(new URL('/dashboard', req.url))
   }

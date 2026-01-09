@@ -1,20 +1,35 @@
 // ===========================================
-// OpoScore - Pagina de Precios Premium
+// OpoScore - Pagina de Precios con Stripe
 // ===========================================
 
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
 import Link from 'next/link'
+import { useCheckout, useSubscription } from '@/hooks/useSubscription'
+import { TRIAL_DAYS } from '@/lib/stripe/config'
+
+// IDs de precios de Stripe (configurar en .env)
+const PRICE_IDS = {
+  premium: {
+    monthly: process.env.NEXT_PUBLIC_STRIPE_PRICE_PREMIUM_MONTHLY || '',
+    yearly: process.env.NEXT_PUBLIC_STRIPE_PRICE_PREMIUM_YEARLY || '',
+  },
+  elite: {
+    monthly: process.env.NEXT_PUBLIC_STRIPE_PRICE_ELITE_MONTHLY || '',
+    yearly: process.env.NEXT_PUBLIC_STRIPE_PRICE_ELITE_YEARLY || '',
+  },
+}
 
 const planes = [
   {
-    id: 'gratuito',
+    id: 'gratuito' as const,
     nombre: 'Gratuito',
     descripcion: 'Perfecto para empezar',
     precioMensual: 0,
@@ -26,14 +41,14 @@ const planes = [
       { texto: 'OpoScore basico', incluido: true },
       { texto: 'Tests ilimitados', incluido: false },
       { texto: 'Simulacros oficiales', incluido: false },
+      { texto: 'Tutor IA 24/7', incluido: false },
       { texto: 'Estadisticas avanzadas', incluido: false },
-      { texto: 'Soporte prioritario', incluido: false },
     ],
     cta: 'Empezar gratis',
     destacado: false,
   },
   {
-    id: 'premium',
+    id: 'premium' as const,
     nombre: 'Premium',
     descripcion: 'Para opositores serios',
     precioMensual: 14.99,
@@ -41,45 +56,167 @@ const planes = [
     features: [
       { texto: 'Preguntas ilimitadas', incluido: true },
       { texto: 'Tests ilimitados', incluido: true },
-      { texto: 'Flashcards con IA', incluido: true },
-      { texto: 'OpoScore avanzado', incluido: true },
       { texto: 'Simulacros oficiales', incluido: true },
+      { texto: 'Tutor IA 24/7', incluido: true },
+      { texto: 'Flashcards con IA', incluido: true },
       { texto: 'Estadisticas detalladas', incluido: true },
       { texto: 'Sin anuncios', incluido: true },
-      { texto: 'Soporte 24/7', incluido: false },
+      { texto: 'Soporte prioritario', incluido: false },
     ],
     cta: 'Empezar prueba gratis',
     destacado: true,
     badge: 'Mas popular',
   },
   {
-    id: 'elite',
+    id: 'elite' as const,
     nombre: 'Elite',
     descripcion: 'Preparacion total',
     precioMensual: 29.99,
     precioAnual: 19.99,
     features: [
       { texto: 'Todo de Premium', incluido: true },
-      { texto: 'Tutor IA personal', incluido: true },
-      { texto: 'Plan de estudio adaptativo', incluido: true },
-      { texto: 'Prediccion de examen', incluido: true },
-      { texto: 'Analisis de debilidades', incluido: true },
-      { texto: 'Sesiones 1:1 mensuales', incluido: true },
-      { texto: 'Acceso anticipado', incluido: true },
       { texto: 'Soporte 24/7 prioritario', incluido: true },
+      { texto: 'Sesiones 1:1 mensuales', incluido: true },
+      { texto: 'Plan de estudio personalizado', incluido: true },
+      { texto: 'Analisis de debilidades', incluido: true },
+      { texto: 'Acceso anticipado a features', incluido: true },
+      { texto: 'Comunidad privada de elite', incluido: true },
+      { texto: 'Garantia de aprobado', incluido: true },
     ],
-    cta: 'Contactar ventas',
+    cta: 'Empezar prueba gratis',
     destacado: false,
-    badge: 'Para instituciones',
+    badge: 'Maximo nivel',
   },
 ]
 
-export default function PreciosPage() {
+// Componente interno que usa useSearchParams
+function PreciosContent() {
   const [anual, setAnual] = useState(true)
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+  const { checkout } = useCheckout()
+  const { isPremium, isElite } = useSubscription()
+
+  // Obtener parametros de URL
+  const upgradeRequired = searchParams.get('upgrade')
+  const checkoutResult = searchParams.get('checkout')
+
+  const handleSubscribe = async (planId: 'premium' | 'elite') => {
+    try {
+      setLoadingPlan(planId)
+      const priceId = anual ? PRICE_IDS[planId].yearly : PRICE_IDS[planId].monthly
+
+      if (!priceId) {
+        alert('Error: Los precios de Stripe no estan configurados. Contacta con soporte.')
+        return
+      }
+
+      await checkout(priceId)
+    } catch (error) {
+      console.error('Error al suscribirse:', error)
+      alert('Error al procesar el pago. Por favor, intentalo de nuevo.')
+    } finally {
+      setLoadingPlan(null)
+    }
+  }
+
+  const getPlanButton = (plan: typeof planes[0]) => {
+    // Si es el plan gratuito
+    if (plan.id === 'gratuito') {
+      return (
+        <Link href="/register">
+          <Button className="w-full" variant="outline" size="lg">
+            {plan.cta}
+          </Button>
+        </Link>
+      )
+    }
+
+    // Si ya tiene este plan o superior
+    const hasThisPlan = (plan.id === 'premium' && isPremium) || (plan.id === 'elite' && isElite)
+    const hasBetterPlan = plan.id === 'premium' && isElite
+
+    if (hasThisPlan) {
+      return (
+        <Button className="w-full" variant="outline" size="lg" disabled>
+          Plan actual
+        </Button>
+      )
+    }
+
+    if (hasBetterPlan) {
+      return (
+        <Button className="w-full" variant="outline" size="lg" disabled>
+          Ya tienes Elite
+        </Button>
+      )
+    }
+
+    // Boton de suscripcion
+    return (
+      <Button
+        className="w-full"
+        variant={plan.destacado ? 'default' : 'outline'}
+        size="lg"
+        onClick={() => handleSubscribe(plan.id as 'premium' | 'elite')}
+        disabled={loadingPlan !== null}
+      >
+        {loadingPlan === plan.id ? (
+          <span className="flex items-center gap-2">
+            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+            </svg>
+            Procesando...
+          </span>
+        ) : (
+          plan.cta
+        )}
+      </Button>
+    )
+  }
 
   return (
     <div className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
+        {/* Notificacion de checkout */}
+        {checkoutResult === 'success' && (
+          <motion.div
+            className="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <p className="text-green-800 font-medium">
+              ¡Bienvenido a Premium! Tu suscripcion se ha activado correctamente.
+            </p>
+          </motion.div>
+        )}
+
+        {checkoutResult === 'canceled' && (
+          <motion.div
+            className="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <p className="text-yellow-800 font-medium">
+              El proceso de pago fue cancelado. Puedes intentarlo de nuevo cuando quieras.
+            </p>
+          </motion.div>
+        )}
+
+        {upgradeRequired && (
+          <motion.div
+            className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <p className="text-primary font-medium">
+              Esta funcionalidad requiere el plan {upgradeRequired === 'premium' ? 'Premium' : 'Elite'}.
+              Elige tu plan para desbloquearla.
+            </p>
+          </motion.div>
+        )}
+
         {/* Header */}
         <motion.div
           className="text-center mb-12"
@@ -91,7 +228,7 @@ export default function PreciosPage() {
             Elige tu plan de preparacion
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Invierte en tu futuro. Todos los planes incluyen 14 dias de prueba gratuita.
+            Invierte en tu futuro. Todos los planes de pago incluyen {TRIAL_DAYS} dias de prueba gratuita.
           </p>
 
           {/* Toggle anual/mensual */}
@@ -146,6 +283,11 @@ export default function PreciosPage() {
                         Facturado anualmente ({(plan.precioAnual * 12).toFixed(0)}€/año)
                       </p>
                     )}
+                    {plan.precioMensual > 0 && (
+                      <p className="text-xs text-primary mt-2">
+                        {TRIAL_DAYS} dias de prueba gratis
+                      </p>
+                    )}
                   </div>
 
                   {/* Features */}
@@ -169,20 +311,32 @@ export default function PreciosPage() {
                   </ul>
 
                   {/* CTA */}
-                  <Link href={plan.id === 'elite' ? '/contacto' : '/registro'}>
-                    <Button
-                      className="w-full"
-                      variant={plan.destacado ? 'default' : 'outline'}
-                      size="lg"
-                    >
-                      {plan.cta}
-                    </Button>
-                  </Link>
+                  {getPlanButton(plan)}
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
+
+        {/* Metodos de pago */}
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          <p className="text-sm text-muted-foreground mb-3">Metodos de pago seguros</p>
+          <div className="flex items-center justify-center gap-4 opacity-60">
+            <svg className="h-8" viewBox="0 0 50 32" fill="currentColor">
+              <path d="M20.4 10.3h-3.6l2.3 14h3.6l-2.3-14zm14.9 0l-3.4 9.6-.4-1.9-1.2-5.9c-.2-.9-.8-1.7-1.8-1.8H24l-.1.3c1.5.4 2.8.9 3.9 1.5l3.3 12.4h3.8l5.7-14.2h-3.8zm-7.4 14h-3.5l2.1-14h3.5l-2.1 14z"/>
+            </svg>
+            <svg className="h-8" viewBox="0 0 50 32" fill="currentColor">
+              <path d="M35 16.3c0 4.8-3.9 8.7-8.7 8.7s-8.7-3.9-8.7-8.7 3.9-8.7 8.7-8.7 8.7 3.9 8.7 8.7z"/>
+              <path d="M23.7 16.3c0 4.8-3.9 8.7-8.7 8.7S6.3 21.1 6.3 16.3s3.9-8.7 8.7-8.7 8.7 3.9 8.7 8.7z" opacity=".65"/>
+            </svg>
+            <span className="text-sm">Stripe Secure</span>
+          </div>
+        </motion.div>
 
         {/* FAQ Pricing */}
         <motion.div
@@ -196,25 +350,25 @@ export default function PreciosPage() {
             <div className="p-4 rounded-lg bg-muted/50">
               <h3 className="font-medium mb-2">¿Puedo cancelar en cualquier momento?</h3>
               <p className="text-sm text-muted-foreground">
-                Si, puedes cancelar tu suscripcion en cualquier momento. No hay contratos ni permanencias.
+                Si, puedes cancelar tu suscripcion en cualquier momento desde tu perfil. No hay contratos ni permanencias.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-muted/50">
               <h3 className="font-medium mb-2">¿Que metodos de pago aceptais?</h3>
               <p className="text-sm text-muted-foreground">
-                Aceptamos tarjetas de credito/debito, PayPal y transferencia bancaria para planes anuales.
+                Aceptamos todas las tarjetas de credito y debito principales (Visa, Mastercard, Amex) a traves de Stripe.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-muted/50">
-              <h3 className="font-medium mb-2">¿Hay descuento para estudiantes?</h3>
+              <h3 className="font-medium mb-2">¿Como funciona la prueba gratuita?</h3>
               <p className="text-sm text-muted-foreground">
-                Si, ofrecemos un 20% de descuento adicional con email .edu verificado.
+                Tienes {TRIAL_DAYS} dias para probar todas las funcionalidades Premium. No se te cobrara hasta que termine el periodo de prueba.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-muted/50">
               <h3 className="font-medium mb-2">¿Puedo cambiar de plan?</h3>
               <p className="text-sm text-muted-foreground">
-                Puedes actualizar o degradar tu plan en cualquier momento. El cambio se aplica inmediatamente.
+                Puedes actualizar o degradar tu plan en cualquier momento desde el portal de facturacion.
               </p>
             </div>
           </div>
@@ -235,5 +389,34 @@ export default function PreciosPage() {
         </motion.div>
       </div>
     </div>
+  )
+}
+
+// Loading fallback para Suspense
+function PreciosLoading() {
+  return (
+    <div className="py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="h-6 w-32 bg-muted rounded mx-auto mb-4 animate-pulse" />
+          <div className="h-12 w-96 bg-muted rounded mx-auto mb-4 animate-pulse" />
+          <div className="h-6 w-64 bg-muted rounded mx-auto animate-pulse" />
+        </div>
+        <div className="grid gap-8 md:grid-cols-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-96 bg-muted rounded-lg animate-pulse" />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Componente principal con Suspense
+export default function PreciosPage() {
+  return (
+    <Suspense fallback={<PreciosLoading />}>
+      <PreciosContent />
+    </Suspense>
   )
 }
