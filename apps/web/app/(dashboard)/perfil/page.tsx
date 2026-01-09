@@ -55,14 +55,14 @@ export default function PerfilPage() {
   useEffect(() => {
     const loadUserData = async () => {
       const supabase = createClient()
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await (supabase as any).auth.getUser()
 
       if (user) {
-        const { data: profile } = await supabase
+        const { data: profile } = await (supabase as any)
           .from('profiles')
           .select('*')
           .eq('id', user.id)
-          .single()
+          .single() as { data: { full_name: string | null; created_at: string | null } | null }
 
         if (profile) {
           setUserData({
@@ -87,11 +87,11 @@ export default function PerfilPage() {
 
     try {
       const supabase = createClient()
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await (supabase as any).auth.getUser()
 
       if (!user) throw new Error('No autenticado')
 
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('profiles')
         .update({ full_name: nombre })
         .eq('id', user.id)
@@ -237,7 +237,7 @@ export default function PerfilPage() {
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
-                  value={USER_DATA.email}
+                  value={userData.email}
                   disabled
                   className="bg-muted"
                 />

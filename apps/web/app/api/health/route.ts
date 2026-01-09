@@ -19,10 +19,14 @@ interface HealthStatus {
 const startTime = Date.now()
 
 export async function GET() {
-  const checks = {
-    database: 'unconfigured' as const,
-    ai: 'unconfigured' as const,
-    stripe: 'unconfigured' as const,
+  const checks: {
+    database: 'ok' | 'error' | 'unconfigured'
+    ai: 'ok' | 'error' | 'unconfigured'
+    stripe: 'ok' | 'error' | 'unconfigured'
+  } = {
+    database: 'unconfigured',
+    ai: 'unconfigured',
+    stripe: 'unconfigured',
   }
 
   // Check Supabase

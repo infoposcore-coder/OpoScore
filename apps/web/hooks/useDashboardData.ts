@@ -85,38 +85,40 @@ export function useDashboardData() {
 
       try {
         // Obtener estadísticas del usuario
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const sb = supabase as any
         const [
           { data: profile },
           { data: racha },
           { data: tests },
           { data: metricasHoy },
         ] = await Promise.all([
-          supabase
+          sb
             .from('profiles')
             .select('*')
             .eq('id', user.id)
             .single(),
-          supabase
+          sb
             .from('rachas')
             .select('dias_consecutivos, mejor_racha')
             .eq('user_id', user.id)
             .single(),
-          supabase
+          sb
             .from('tests')
             .select('id, created_at, puntuacion, oposicion_id')
             .eq('user_id', user.id)
             .order('created_at', { ascending: false })
             .limit(10),
-          supabase
+          sb
             .from('metricas_diarias')
             .select('*')
             .eq('user_id', user.id)
             .eq('fecha', new Date().toISOString().split('T')[0])
             .single(),
-        ])
+        ]) as any
 
         // Calcular estadísticas
-        const testsHoy = tests?.filter(t =>
+        const testsHoy = tests?.filter((t: any) =>
           new Date(t.created_at).toDateString() === new Date().toDateString()
         ).length || 0
 
@@ -135,7 +137,7 @@ export function useDashboardData() {
         }
 
         // Tests recientes formateados
-        const recentTests: RecentTest[] = (tests || []).slice(0, 5).map(t => ({
+        const recentTests: RecentTest[] = (tests || []).slice(0, 5).map((t: any) => ({
           id: t.id,
           fecha: t.created_at,
           tema: 'Test de Oposición',
