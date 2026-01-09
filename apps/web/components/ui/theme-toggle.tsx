@@ -27,7 +27,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="w-9 h-9">
           {theme === 'dark' ? (
