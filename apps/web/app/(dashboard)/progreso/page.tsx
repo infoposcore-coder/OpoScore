@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Progreso Mejorada
+// OpoScore - Página de Progreso
 // Visualización completa del progreso
 // ===========================================
 
@@ -120,7 +120,7 @@ export default function ProgresoPage() {
         </Card>
       </div>
 
-      {/* Tabs de metricas */}
+      {/* Tabs de métricas */}
       <Tabs defaultValue="semanal" className="w-full">
         <TabsList className="w-full justify-start overflow-x-auto">
           <TabsTrigger value="semanal">📊 Semanal</TabsTrigger>
@@ -187,7 +187,7 @@ export default function ProgresoPage() {
         </CardContent>
       </Card>
 
-      {/* Stats rapidas */}
+      {/* Stats rápidas */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="pt-6 text-center">

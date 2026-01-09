@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/accordion'
 
 // Efecto de escritura
-function TypeWriter({ words, className }: { words: string[], className?: string }) {
+function TypeWriter({ words, className }: { words: string[]; className?: string }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [currentText, setCurrentText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
@@ -59,24 +59,24 @@ function TypeWriter({ words, className }: { words: string[], className?: string 
 // Datos de testimonios
 const testimonios = [
   {
-    nombre: 'Maria Garcia',
+    nombre: 'María García',
     avatar: '/avatars/maria.jpg',
     oposicion: 'Auxiliar Administrativo AGE',
-    texto: 'Aprobe en la primera convocatoria. El OpoScore me dijo que estaba lista cuando tenia 87 puntos. ¡Y tenia razon!',
+    texto: 'Aprobé en la primera convocatoria. El OpoScore me dijo que estaba lista cuando tenía 87 puntos. ¡Y tenía razón!',
     score: 92,
   },
   {
-    nombre: 'Carlos Rodriguez',
+    nombre: 'Carlos Rodríguez',
     avatar: '/avatars/carlos.jpg',
-    oposicion: 'Tramitacion Procesal',
-    texto: 'Despues de 3 años preparandome sin exito, OpoScore me ayudo a identificar mis puntos debiles. Aprobe al año siguiente.',
+    oposicion: 'Tramitación Procesal',
+    texto: 'Después de 3 años preparándome sin éxito, OpoScore me ayudó a identificar mis puntos débiles. Aprobé al año siguiente.',
     score: 88,
   },
   {
-    nombre: 'Laura Martinez',
+    nombre: 'Laura Martínez',
     avatar: '/avatars/laura.jpg',
     oposicion: 'Correos',
-    texto: 'El tutor IA es increible. Resolvia mis dudas a las 3 de la mañana cuando no podia dormir de los nervios.',
+    texto: 'El tutor IA es increíble. Resolvía mis dudas a las 3 de la mañana cuando no podía dormir de los nervios.',
     score: 85,
   },
 ]
@@ -84,24 +84,24 @@ const testimonios = [
 // FAQ
 const faqs = [
   {
-    pregunta: '¿Que es el OpoScore y como funciona?',
-    respuesta: 'El OpoScore es una puntuacion del 0 al 100 calculada mediante algoritmos de machine learning. Analiza tu progreso en tests, tiempo de estudio, constancia y tendencia para predecir tu nivel de preparacion real.',
+    pregunta: '¿Qué es el OpoScore y cómo funciona?',
+    respuesta: 'El OpoScore es una puntuación del 0 al 100 calculada mediante algoritmos de machine learning. Analiza tu progreso en tests, tiempo de estudio, constancia y tendencia para predecir tu nivel de preparación real.',
   },
   {
-    pregunta: '¿Cuanto cuesta OpoScore?',
+    pregunta: '¿Cuánto cuesta OpoScore?',
     respuesta: 'Ofrecemos un plan gratuito con acceso limitado a tests y el tutor IA. Los planes premium empiezan desde 19€/mes e incluyen acceso ilimitado, simulacros y analíticas avanzadas.',
   },
   {
-    pregunta: '¿Que oposiciones teneis disponibles?',
-    respuesta: 'Actualmente cubrimos Auxiliar Administrativo del Estado, Tramitacion Procesal, Correos y Hacienda. Cada mes añadimos nuevas oposiciones.',
+    pregunta: '¿Qué oposiciones tenéis disponibles?',
+    respuesta: 'Actualmente cubrimos Auxiliar Administrativo del Estado, Tramitación Procesal, Correos y Hacienda. Cada mes añadimos nuevas oposiciones.',
   },
   {
     pregunta: '¿El tutor IA realmente resuelve dudas?',
-    respuesta: 'Si, nuestro tutor esta entrenado especificamente en contenido de oposiciones. Puede explicarte conceptos, resolver dudas sobre legislacion y ayudarte a entender temas complejos.',
+    respuesta: 'Sí, nuestro tutor está entrenado específicamente en contenido de oposiciones. Puede explicarte conceptos, resolver dudas sobre legislación y ayudarte a entender temas complejos.',
   },
   {
     pregunta: '¿Puedo cancelar cuando quiera?',
-    respuesta: 'Si, puedes cancelar tu suscripcion en cualquier momento. No hay permanencia ni penalizaciones.',
+    respuesta: 'Sí, puedes cancelar tu suscripción en cualquier momento. No hay permanencia ni penalizaciones.',
   },
 ]
 
@@ -109,8 +109,8 @@ const faqs = [
 const comparativa = [
   { caracteristica: 'Tests ilimitados', oposcore: true, competencia: false },
   { caracteristica: 'Tutor IA 24/7', oposcore: true, competencia: false },
-  { caracteristica: 'Prediccion de aprobado', oposcore: true, competencia: false },
-  { caracteristica: 'App movil', oposcore: true, competencia: true },
+  { caracteristica: 'Predicción de aprobado', oposcore: true, competencia: false },
+  { caracteristica: 'App móvil', oposcore: true, competencia: true },
   { caracteristica: 'Temarios actualizados', oposcore: true, competencia: true },
   { caracteristica: 'Simulacros cronometrados', oposcore: true, competencia: true },
   { caracteristica: 'Sistema anti-abandono', oposcore: true, competencia: false },
@@ -208,7 +208,7 @@ export default function LandingPage() {
           >
             Sabe exactamente cuando{' '}
             <span className="text-gradient-primary">
-              <TypeWriter words={['aprobaras', 'estaras listo', 'dominaras el temario']} />
+              <TypeWriter words={['aprobarás', 'estarás listo', 'dominarás el temario']} />
             </span>
           </motion.h1>
 
@@ -219,7 +219,7 @@ export default function LandingPage() {
             transition={{ delay: 0.4 }}
           >
             La primera academia de oposiciones con{' '}
-            <span className="font-semibold text-foreground">puntuacion predictiva</span>.
+            <span className="font-semibold text-foreground">puntuación predictiva</span>.
             Nuestro algoritmo analiza tu progreso y te dice objetivamente tu probabilidad de aprobar.
           </motion.p>
 
@@ -261,7 +261,7 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            {['Sin tarjeta de credito', 'Cancela cuando quieras', 'Soporte 24/7'].map((text, i) => (
+            {['Sin tarjeta de crédito', 'Cancela cuando quieras', 'Soporte 24/7'].map((text, i) => (
               <div key={i} className="flex items-center gap-2">
                 <svg className="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -318,13 +318,13 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Badge variant="outline" className="mb-4">Tu puntuacion</Badge>
+            <Badge variant="outline" className="mb-4">Tu puntuación</Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Tu OpoScore: El numero que lo cambia todo
+              Tu OpoScore: El número que lo cambia todo
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               Un indicador del 0 al 100 basado en datos reales, no en sensaciones.
-              Sabe exactamente como de preparado estas.
+              Sabrás exactamente cómo de preparado estás.
             </p>
           </motion.div>
 
@@ -415,7 +415,7 @@ export default function LandingPage() {
                   </svg>
                 ),
                 title: 'Sistema anti-abandono',
-                description: 'Detectamos señales de abandono y te ayudamos a mantener la motivacion.',
+                description: 'Detectamos señales de abandono y te ayudamos a mantener la motivación.',
                 color: 'text-rose-500 bg-rose-500/10'
               },
               {
@@ -425,7 +425,7 @@ export default function LandingPage() {
                   </svg>
                 ),
                 title: 'Simulacros reales',
-                description: 'Examenes cronometrados en condiciones reales. Preparate para el dia D.',
+                description: 'Exámenes cronometrados en condiciones reales. Prepárate para el día D.',
                 color: 'text-cyan-500 bg-cyan-500/10'
               },
               {
@@ -434,8 +434,8 @@ export default function LandingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 ),
-                title: 'Analiticas avanzadas',
-                description: 'Visualiza tu evolucion tema a tema. Identifica puntos debiles al instante.',
+                title: 'Analíticas avanzadas',
+                description: 'Visualiza tu evolución tema a tema. Identifica puntos débiles al instante.',
                 color: 'text-emerald-500 bg-emerald-500/10'
               },
             ].map((feature, i) => (
@@ -474,7 +474,7 @@ export default function LandingPage() {
           >
             <Badge variant="outline" className="mb-4">Testimonios</Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Historias de exito reales
+              Historias de éxito reales
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
               Opositores que confiaron en nosotros y consiguieron su plaza
@@ -533,10 +533,10 @@ export default function LandingPage() {
           >
             <Badge variant="outline" className="mb-4">Comparativa</Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              ¿Por que elegir OpoScore?
+              ¿Por qué elegir OpoScore?
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Comparanos con academias tradicionales
+              Compáranos con academias tradicionales
             </p>
           </motion.div>
 
@@ -606,10 +606,10 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: '2,500+', label: 'Opositores activos', sub: 'Y creciendo cada dia' },
+              { value: '2,500+', label: 'Opositores activos', sub: 'Y creciendo cada día' },
               { value: '50,000+', label: 'Preguntas disponibles', sub: 'Actualizadas constantemente' },
               { value: '85%', label: 'Tasa de aprobados', sub: 'Con OpoScore > 85' },
-              { value: '4.9/5', label: 'Valoracion media', sub: 'En App Store y Play Store' },
+              { value: '4.9/5', label: 'Valoración media', sub: 'En App Store y Play Store' },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -687,7 +687,7 @@ export default function LandingPage() {
               Empieza hoy. Tu plaza te espera.
             </h2>
             <p className="text-lg opacity-90 mb-8 max-w-xl mx-auto">
-              El 50% de los opositores abandona. Con OpoScore sabras exactamente cuando estas listo para aprobar.
+              El 50% de los opositores abandona. Con OpoScore sabrás exactamente cuándo estás listo para aprobar.
             </p>
             <Link href="/register">
               <Button size="lg" variant="secondary" className="text-lg px-10 h-14 shadow-xl">
@@ -706,14 +706,14 @@ export default function LandingPage() {
               <Logo size="sm" showText={true} />
             </div>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} OpoScore. Hecho con pasion en España.
+              © {new Date().getFullYear()} OpoScore. Hecho con pasión en España.
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground">
               <Link href="/privacidad" className="hover:text-foreground transition-colors">
                 Privacidad
               </Link>
               <Link href="/terminos" className="hover:text-foreground transition-colors">
-                Terminos
+                Términos
               </Link>
               <Link href="/contacto" className="hover:text-foreground transition-colors">
                 Contacto

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Pagina de Estudiar
+// OpoScore - Página de Estudiar
 // Vista principal de temas y acciones de estudio
 // ===========================================
 
@@ -102,9 +102,9 @@ export default function EstudiarPage() {
         </div>
       </div>
 
-      {/* Acciones rapidas */}
+      {/* Acciones rápidas */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <Link href="/estudiar/test-rapido">
+        <Link href="/estudiar/auxiliar-administrativo/tests?modo=rapido">
           <Card className="card-hover cursor-pointer h-full">
             <CardContent className="pt-4 text-center">
               <div className="text-3xl mb-2">⚡</div>
@@ -113,21 +113,21 @@ export default function EstudiarPage() {
             </CardContent>
           </Card>
         </Link>
-        <Link href="/estudiar/repaso">
+        <Link href="/estudiar/auxiliar-administrativo/flashcards">
           <Card className="card-hover cursor-pointer h-full">
             <CardContent className="pt-4 text-center">
               <div className="text-3xl mb-2">🔄</div>
               <div className="font-medium">Repaso espaciado</div>
-              <div className="text-xs text-muted-foreground">Temas que necesitas repasar</div>
+              <div className="text-xs text-muted-foreground">Flashcards pendientes</div>
             </CardContent>
           </Card>
         </Link>
-        <Link href="/estudiar/puntos-debiles">
+        <Link href="/progreso">
           <Card className="card-hover cursor-pointer h-full">
             <CardContent className="pt-4 text-center">
               <div className="text-3xl mb-2">🎯</div>
               <div className="font-medium">Puntos débiles</div>
-              <div className="text-xs text-muted-foreground">Temas con menos dominio</div>
+              <div className="text-xs text-muted-foreground">Ver temas con menos dominio</div>
             </CardContent>
           </Card>
         </Link>
@@ -166,7 +166,7 @@ export default function EstudiarPage() {
                   <Card className="card-hover">
                     <CardContent className="p-4">
                       <div className="flex items-center gap-4">
-                        {/* Numero de tema */}
+                        {/* Número de tema */}
                         <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center font-bold text-muted-foreground">
                           {tema.id}
                         </div>

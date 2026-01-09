@@ -4,6 +4,7 @@
 
 'use client'
 
+import { useState, useRef } from 'react'
 import { TutorChat } from '@/components/ai/TutorChat'
 import { Card, CardContent } from '@/components/ui/card'
 import { PlanGate } from '@/components/billing/PlanGate'
@@ -12,6 +13,14 @@ import { PlanGate } from '@/components/billing/PlanGate'
 const DEMO_MODE = !process.env.NEXT_PUBLIC_SUPABASE_URL
 
 export function TutorPageContent() {
+  const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null)
+  const chatRef = useRef<{ sendSuggestion: (text: string) => void } | null>(null)
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setSelectedSuggestion(suggestion)
+    // El componente TutorChat recibirá la sugerencia como prop
+  }
+
   return (
     <PlanGate feature="tutor_ia">
       <div className="p-6">
@@ -39,7 +48,11 @@ export function TutorPageContent() {
         )}
 
         <div className="max-w-3xl">
-          <TutorChat oposicion="Auxiliar Administrativo del Estado" />
+          <TutorChat
+            oposicion="Auxiliar Administrativo del Estado"
+            initialMessage={selectedSuggestion}
+            onMessageSent={() => setSelectedSuggestion(null)}
+          />
         </div>
 
         <div className="mt-6 max-w-3xl">
@@ -53,12 +66,13 @@ export function TutorPageContent() {
               '¿Qué diferencia hay entre recurso de alzada y reposición?',
               '¿Cómo organizo mi tiempo de estudio?',
             ].map((suggestion) => (
-              <div
+              <button
                 key={suggestion}
-                className="text-left text-sm p-3 rounded-lg border bg-card text-muted-foreground"
+                onClick={() => handleSuggestionClick(suggestion)}
+                className="text-left text-sm p-3 rounded-lg border bg-card text-muted-foreground hover:bg-muted hover:border-primary/50 transition-colors cursor-pointer"
               >
                 {suggestion}
-              </div>
+              </button>
             ))}
           </div>
         </div>

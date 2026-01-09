@@ -37,12 +37,12 @@ const planes = [
     features: [
       { texto: '50 preguntas/mes', incluido: true },
       { texto: '1 test diario', incluido: true },
-      { texto: 'Flashcards basicas', incluido: true },
-      { texto: 'OpoScore basico', incluido: true },
+      { texto: 'Flashcards básicas', incluido: true },
+      { texto: 'OpoScore básico', incluido: true },
       { texto: 'Tests ilimitados', incluido: false },
       { texto: 'Simulacros oficiales', incluido: false },
       { texto: 'Tutor IA 24/7', incluido: false },
-      { texto: 'Estadisticas avanzadas', incluido: false },
+      { texto: 'Estadísticas avanzadas', incluido: false },
     ],
     cta: 'Empezar gratis',
     destacado: false,
@@ -59,18 +59,18 @@ const planes = [
       { texto: 'Simulacros oficiales', incluido: true },
       { texto: 'Tutor IA 24/7', incluido: true },
       { texto: 'Flashcards con IA', incluido: true },
-      { texto: 'Estadisticas detalladas', incluido: true },
+      { texto: 'Estadísticas detalladas', incluido: true },
       { texto: 'Sin anuncios', incluido: true },
       { texto: 'Soporte prioritario', incluido: false },
     ],
     cta: 'Empezar prueba gratis',
     destacado: true,
-    badge: 'Mas popular',
+    badge: 'Más popular',
   },
   {
     id: 'elite' as const,
     nombre: 'Elite',
-    descripcion: 'Preparacion total',
+    descripcion: 'Preparación total',
     precioMensual: 29.99,
     precioAnual: 19.99,
     features: [
@@ -78,14 +78,14 @@ const planes = [
       { texto: 'Soporte 24/7 prioritario', incluido: true },
       { texto: 'Sesiones 1:1 mensuales', incluido: true },
       { texto: 'Plan de estudio personalizado', incluido: true },
-      { texto: 'Analisis de debilidades', incluido: true },
+      { texto: 'Análisis de debilidades', incluido: true },
       { texto: 'Acceso anticipado a features', incluido: true },
-      { texto: 'Comunidad privada de elite', incluido: true },
-      { texto: 'Garantia de aprobado', incluido: true },
+      { texto: 'Comunidad privada de élite', incluido: true },
+      { texto: 'Garantía de aprobado', incluido: true },
     ],
     cta: 'Empezar prueba gratis',
     destacado: false,
-    badge: 'Maximo nivel',
+    badge: 'Máximo nivel',
   },
 ]
 
@@ -107,14 +107,14 @@ function PreciosContent() {
       const priceId = anual ? PRICE_IDS[planId].yearly : PRICE_IDS[planId].monthly
 
       if (!priceId) {
-        alert('Error: Los precios de Stripe no estan configurados. Contacta con soporte.')
+        alert('Error: Los precios de Stripe no están configurados. Contacta con soporte.')
         return
       }
 
       await checkout(priceId)
     } catch (error) {
       console.error('Error al suscribirse:', error)
-      alert('Error al procesar el pago. Por favor, intentalo de nuevo.')
+      alert('Error al procesar el pago. Por favor, inténtalo de nuevo.')
     } finally {
       setLoadingPlan(null)
     }
@@ -187,7 +187,7 @@ function PreciosContent() {
             animate={{ opacity: 1, y: 0 }}
           >
             <p className="text-green-800 font-medium">
-              ¡Bienvenido a Premium! Tu suscripcion se ha activado correctamente.
+              ¡Bienvenido a Premium! Tu suscripción se ha activado correctamente.
             </p>
           </motion.div>
         )}
@@ -225,10 +225,10 @@ function PreciosContent() {
         >
           <Badge variant="secondary" className="mb-4">Precios transparentes</Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Elige tu plan de preparacion
+            Elige tu plan de preparación
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Invierte en tu futuro. Todos los planes de pago incluyen {TRIAL_DAYS} dias de prueba gratuita.
+            Invierte en tu futuro. Todos los planes de pago incluyen {TRIAL_DAYS} días de prueba gratuita.
           </p>
 
           {/* Toggle anual/mensual */}
@@ -285,7 +285,7 @@ function PreciosContent() {
                     )}
                     {plan.precioMensual > 0 && (
                       <p className="text-xs text-primary mt-2">
-                        {TRIAL_DAYS} dias de prueba gratis
+                        {TRIAL_DAYS} días de prueba gratis
                       </p>
                     )}
                   </div>
@@ -325,7 +325,7 @@ function PreciosContent() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <p className="text-sm text-muted-foreground mb-3">Metodos de pago seguros</p>
+          <p className="text-sm text-muted-foreground mb-3">Métodos de pago seguros</p>
           <div className="flex items-center justify-center gap-4 opacity-60">
             <svg className="h-8" viewBox="0 0 50 32" fill="currentColor">
               <path d="M20.4 10.3h-3.6l2.3 14h3.6l-2.3-14zm14.9 0l-3.4 9.6-.4-1.9-1.2-5.9c-.2-.9-.8-1.7-1.8-1.8H24l-.1.3c1.5.4 2.8.9 3.9 1.5l3.3 12.4h3.8l5.7-14.2h-3.8zm-7.4 14h-3.5l2.1-14h3.5l-2.1 14z"/>
@@ -350,25 +350,25 @@ function PreciosContent() {
             <div className="p-4 rounded-lg bg-muted/50">
               <h3 className="font-medium mb-2">¿Puedo cancelar en cualquier momento?</h3>
               <p className="text-sm text-muted-foreground">
-                Si, puedes cancelar tu suscripcion en cualquier momento desde tu perfil. No hay contratos ni permanencias.
+                Sí, puedes cancelar tu suscripción en cualquier momento desde tu perfil. No hay contratos ni permanencias.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-muted/50">
-              <h3 className="font-medium mb-2">¿Que metodos de pago aceptais?</h3>
+              <h3 className="font-medium mb-2">¿Qué métodos de pago aceptáis?</h3>
               <p className="text-sm text-muted-foreground">
-                Aceptamos todas las tarjetas de credito y debito principales (Visa, Mastercard, Amex) a traves de Stripe.
+                Aceptamos todas las tarjetas de crédito y débito principales (Visa, Mastercard, Amex) a través de Stripe.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-muted/50">
-              <h3 className="font-medium mb-2">¿Como funciona la prueba gratuita?</h3>
+              <h3 className="font-medium mb-2">¿Cómo funciona la prueba gratuita?</h3>
               <p className="text-sm text-muted-foreground">
-                Tienes {TRIAL_DAYS} dias para probar todas las funcionalidades Premium. No se te cobrara hasta que termine el periodo de prueba.
+                Tienes {TRIAL_DAYS} días para probar todas las funcionalidades Premium. No se te cobrará hasta que termine el periodo de prueba.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-muted/50">
               <h3 className="font-medium mb-2">¿Puedo cambiar de plan?</h3>
               <p className="text-sm text-muted-foreground">
-                Puedes actualizar o degradar tu plan en cualquier momento desde el portal de facturacion.
+                Puedes actualizar o degradar tu plan en cualquier momento desde el portal de facturación.
               </p>
             </div>
           </div>
@@ -382,9 +382,9 @@ function PreciosContent() {
           transition={{ delay: 0.6 }}
         >
           <div className="text-4xl mb-4">🛡️</div>
-          <h3 className="text-xl font-bold mb-2">Garantia de devolucion de 30 dias</h3>
+          <h3 className="text-xl font-bold mb-2">Garantía de devolución de 30 días</h3>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Si no estas satisfecho con OpoScore, te devolvemos el 100% de tu dinero durante los primeros 30 dias. Sin preguntas.
+            Si no estás satisfecho con OpoScore, te devolvemos el 100% de tu dinero durante los primeros 30 días. Sin preguntas.
           </p>
         </motion.div>
       </div>

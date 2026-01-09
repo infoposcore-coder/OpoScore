@@ -19,9 +19,11 @@ interface Message {
 interface TutorChatProps {
   oposicion?: string
   className?: string
+  initialMessage?: string | null
+  onMessageSent?: () => void
 }
 
-export function TutorChat({ oposicion, className }: TutorChatProps) {
+export function TutorChat({ oposicion, className, initialMessage, onMessageSent }: TutorChatProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
@@ -32,12 +34,31 @@ export function TutorChat({ oposicion, className }: TutorChatProps) {
   const [loading, setLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const [pendingMessage, setPendingMessage] = useState<string | null>(null)
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [messages])
+
+  // Manejar mensaje inicial desde sugerencias
+  useEffect(() => {
+    if (initialMessage && !loading) {
+      setPendingMessage(initialMessage)
+    }
+  }, [initialMessage, loading])
+
+  useEffect(() => {
+    if (pendingMessage && !loading) {
+      setInput(pendingMessage)
+      setPendingMessage(null)
+      // Auto-enviar después de un pequeño delay
+      setTimeout(() => {
+        inputRef.current?.focus()
+      }, 100)
+    }
+  }, [pendingMessage, loading])
 
   const sendMessage = async () => {
     if (!input.trim() || loading) return
@@ -68,6 +89,7 @@ export function TutorChat({ oposicion, className }: TutorChatProps) {
       }
 
       setMessages(prev => [...prev, { role: 'assistant', content: data.respuesta }])
+      onMessageSent?.()
     } catch (error) {
       console.error('Error sending message:', error)
       setMessages(prev => [...prev, {

@@ -5,7 +5,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -17,14 +17,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ScoreGauge } from '@/components/oposcore/ScoreGauge'
 import { StreakFire } from '@/components/gamification/StreakFire'
 import { AchievementGrid, ACHIEVEMENTS } from '@/components/gamification/AchievementBadge'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { useSubscription, useBillingPortal } from '@/hooks/useSubscription'
+import { createClient } from '@/lib/supabase/client'
+import Link from 'next/link'
 
-// Mock de datos de usuario
-const USER_DATA = {
-  nombre: 'Antonio',
-  email: 'antonio@ejemplo.com',
+// Mock de datos de usuario (se sobrescriben con datos reales)
+const DEFAULT_USER_DATA = {
+  nombre: 'Usuario',
+  email: 'usuario@ejemplo.com',
   oposicion: 'Auxiliar Administrativo AGE',
   miembroDesde: '2024-11-15',
-  plan: 'premium',
+  plan: 'free',
   opoScore: 67,
   opoScoreChange: 5,
   racha: 12,
@@ -34,37 +38,117 @@ const USER_DATA = {
   temasCompletados: 8,
 }
 
-// Cálculo de días como miembro
-
 export default function PerfilPage() {
-  const [nombre, setNombre] = useState(USER_DATA.nombre)
+  const [userData, setUserData] = useState(DEFAULT_USER_DATA)
+  const [nombre, setNombre] = useState('')
   const [notificacionesEmail, setNotificacionesEmail] = useState(true)
   const [notificacionesPush, setNotificacionesPush] = useState(true)
   const [recordatoriosDiarios, setRecordatoriosDiarios] = useState(true)
   const [horaRecordatorio, setHoraRecordatorio] = useState('09:00')
+  const [guardando, setGuardando] = useState(false)
+  const [mensaje, setMensaje] = useState<{ tipo: 'success' | 'error'; texto: string } | null>(null)
+
+  const { subscription, isPremium, isElite, isLoading: loadingSubscription } = useSubscription()
+  const { openPortal } = useBillingPortal()
+
+  // Cargar datos del usuario
+  useEffect(() => {
+    const loadUserData = async () => {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+
+      if (user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single()
+
+        if (profile) {
+          setUserData({
+            ...DEFAULT_USER_DATA,
+            nombre: profile.full_name || 'Usuario',
+            email: user.email || '',
+            miembroDesde: profile.created_at || DEFAULT_USER_DATA.miembroDesde,
+            plan: isPremium ? (isElite ? 'elite' : 'premium') : 'free',
+          })
+          setNombre(profile.full_name || '')
+        }
+      }
+    }
+
+    loadUserData()
+  }, [isPremium, isElite])
+
+  // Guardar cambios del perfil
+  const handleGuardarCambios = async () => {
+    setGuardando(true)
+    setMensaje(null)
+
+    try {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+
+      if (!user) throw new Error('No autenticado')
+
+      const { error } = await supabase
+        .from('profiles')
+        .update({ full_name: nombre })
+        .eq('id', user.id)
+
+      if (error) throw error
+
+      setMensaje({ tipo: 'success', texto: 'Cambios guardados correctamente' })
+      setUserData(prev => ({ ...prev, nombre }))
+    } catch (error) {
+      console.error('Error al guardar:', error)
+      setMensaje({ tipo: 'error', texto: 'Error al guardar los cambios' })
+    } finally {
+      setGuardando(false)
+    }
+  }
+
+  // Abrir portal de facturación de Stripe
+  const handleGestionarSuscripcion = async () => {
+    try {
+      await openPortal()
+    } catch (error) {
+      console.error('Error al abrir portal:', error)
+      setMensaje({ tipo: 'error', texto: 'Error al abrir el portal de facturación' })
+    }
+  }
 
   const diasMiembro = Math.floor(
-    (Date.now() - new Date(USER_DATA.miembroDesde).getTime()) / (1000 * 60 * 60 * 24)
+    (Date.now() - new Date(userData.miembroDesde).getTime()) / (1000 * 60 * 60 * 24)
   )
+
+  const planLabel = userData.plan === 'elite' ? '👑 Elite' : userData.plan === 'premium' ? '⭐ Premium' : 'Gratis'
 
   return (
     <div className="p-6 space-y-6">
+      {/* Mensaje de estado */}
+      {mensaje && (
+        <Alert variant={mensaje.tipo === 'error' ? 'destructive' : 'default'} className={mensaje.tipo === 'success' ? 'border-green-500 bg-green-50 text-green-800' : ''}>
+          <AlertDescription>{mensaje.texto}</AlertDescription>
+        </Alert>
+      )}
+
       {/* Header con stats principales */}
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Perfil basico */}
+        {/* Perfil básico */}
         <Card className="flex-1">
           <CardContent className="pt-6">
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white text-2xl font-bold shrink-0">
-                {USER_DATA.nombre.slice(0, 2).toUpperCase()}
+                {userData.nombre.slice(0, 2).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <h1 className="text-2xl font-bold">{USER_DATA.nombre}</h1>
-                <p className="text-muted-foreground truncate">{USER_DATA.email}</p>
+                <h1 className="text-2xl font-bold">{userData.nombre}</h1>
+                <p className="text-muted-foreground truncate">{userData.email}</p>
                 <div className="flex flex-wrap items-center gap-2 mt-2">
-                  <Badge variant="outline">🏛️ {USER_DATA.oposicion}</Badge>
+                  <Badge variant="outline">🏛️ {userData.oposicion}</Badge>
                   <Badge className="bg-primary/10 text-primary">
-                    {USER_DATA.plan === 'premium' ? '⭐ Premium' : 'Gratis'}
+                    {planLabel}
                   </Badge>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">
@@ -72,35 +156,35 @@ export default function PerfilPage() {
                 </p>
               </div>
               <div className="shrink-0">
-                <ScoreGauge score={USER_DATA.opoScore} size="md" />
+                <ScoreGauge score={userData.opoScore} size="md" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Stats rapidas */}
+        {/* Stats rápidas */}
         <div className="grid grid-cols-2 gap-3 lg:w-64">
           <Card className="text-center">
             <CardContent className="pt-4 pb-3">
-              <StreakFire days={USER_DATA.racha} bestStreak={USER_DATA.rachaRecord} size="sm" />
+              <StreakFire days={userData.racha} bestStreak={userData.rachaRecord} size="sm" />
               <div className="text-sm text-muted-foreground mt-1">Racha actual</div>
             </CardContent>
           </Card>
           <Card className="text-center">
             <CardContent className="pt-4 pb-3">
-              <div className="text-2xl font-bold text-primary">{USER_DATA.testsCompletados}</div>
+              <div className="text-2xl font-bold text-primary">{userData.testsCompletados}</div>
               <div className="text-sm text-muted-foreground">Tests hechos</div>
             </CardContent>
           </Card>
           <Card className="text-center">
             <CardContent className="pt-4 pb-3">
-              <div className="text-2xl font-bold text-primary">{USER_DATA.horasEstudio}h</div>
+              <div className="text-2xl font-bold text-primary">{userData.horasEstudio}h</div>
               <div className="text-sm text-muted-foreground">Horas estudio</div>
             </CardContent>
           </Card>
           <Card className="text-center">
             <CardContent className="pt-4 pb-3">
-              <div className="text-2xl font-bold text-primary">{USER_DATA.temasCompletados}</div>
+              <div className="text-2xl font-bold text-primary">{userData.temasCompletados}</div>
               <div className="text-sm text-muted-foreground">Temas dominados</div>
             </CardContent>
           </Card>
@@ -161,7 +245,9 @@ export default function PerfilPage() {
                   El email no se puede cambiar
                 </p>
               </div>
-              <Button>Guardar cambios</Button>
+              <Button onClick={handleGuardarCambios} disabled={guardando}>
+                {guardando ? 'Guardando...' : 'Guardar cambios'}
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -242,24 +328,56 @@ export default function PerfilPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-medium">Plan Premium</span>
-                  <Badge className="bg-primary">Activo</Badge>
+              {loadingSubscription ? (
+                <div className="animate-pulse space-y-3">
+                  <div className="h-20 bg-muted rounded-lg" />
+                  <div className="h-10 bg-muted rounded w-32" />
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  19€/mes - Próxima facturación: 15 de febrero
-                </p>
-                <div className="text-sm">
-                  ✓ Tests ilimitados - ✓ Tutor IA 24/7 - ✓ Todas las oposiciones
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Button variant="outline">Cambiar plan</Button>
-                <Button variant="outline" className="text-destructive hover:text-destructive">
-                  Cancelar suscripción
-                </Button>
-              </div>
+              ) : isPremium || isElite ? (
+                <>
+                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium">Plan {isElite ? 'Elite' : 'Premium'}</span>
+                      <Badge className="bg-primary">
+                        {subscription?.isTrial ? 'Prueba' : 'Activo'}
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-2">
+                      {subscription?.currentPeriodEnd
+                        ? `Próxima facturación: ${subscription.currentPeriodEnd.toLocaleDateString('es-ES')}`
+                        : 'Plan activo'}
+                    </p>
+                    <div className="text-sm">
+                      ✓ Tests ilimitados - ✓ Tutor IA 24/7 - ✓ Simulacros
+                    </div>
+                    {subscription?.cancelAtPeriodEnd && (
+                      <p className="text-sm text-orange-600 mt-2">
+                        ⚠️ Tu suscripción se cancelará al final del periodo
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <Button variant="outline" onClick={handleGestionarSuscripcion}>
+                      Gestionar suscripción
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="p-4 rounded-lg bg-muted/50 border">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium">Plan Gratuito</span>
+                      <Badge variant="secondary">Activo</Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-2">
+                      50 preguntas/mes - Funciones limitadas
+                    </p>
+                  </div>
+                  <Link href="/precios">
+                    <Button>Actualizar a Premium</Button>
+                  </Link>
+                </>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
