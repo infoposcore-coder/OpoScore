@@ -107,8 +107,8 @@ export async function POST(request: NextRequest) {
         },
       }
     )
-  } catch (error) {
-    console.error('Tutor API error:', error)
+  } catch {
+    // Tutor API error - consider logging to monitoring service
     return NextResponse.json(
       { error: 'Error al procesar la solicitud' },
       { status: 500 }

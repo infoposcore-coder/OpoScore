@@ -33,6 +33,21 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // 2.1 Validar que el priceId existe y está activo en la base de datos
+    const { data: validPrice, error: priceError } = await supabase
+      .from('prices')
+      .select('id, active, product_id')
+      .eq('id', priceId)
+      .eq('active', true)
+      .single()
+
+    if (priceError || !validPrice) {
+      return NextResponse.json(
+        { error: 'Precio no válido o inactivo' },
+        { status: 400 }
+      )
+    }
+
     // 3. Obtener perfil del usuario
     const { data: profile } = await supabase
       .from('profiles')
@@ -60,8 +75,8 @@ export async function POST(request: NextRequest) {
     // 6. Devolver URL de checkout
     const response: CheckoutResponse = { url: checkoutUrl }
     return NextResponse.json(response)
-  } catch (error) {
-    console.error('Checkout error:', error)
+  } catch {
+    // Checkout error - consider logging to monitoring service
     return NextResponse.json(
       { error: 'Error al crear sesión de pago' },
       { status: 500 }

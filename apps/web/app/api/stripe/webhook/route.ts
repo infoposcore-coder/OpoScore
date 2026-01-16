@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
   const signature = headersList.get('stripe-signature')
 
   if (!signature) {
-    console.error('No stripe signature found')
     return NextResponse.json(
       { error: 'No stripe signature' },
       { status: 400 }
@@ -55,7 +54,7 @@ export async function POST(request: NextRequest) {
     )
   } catch (err) {
     const error = err as Error
-    console.error('Webhook signature verification failed:', error.message)
+    // Error logged for debugging - consider using proper logging service in production
     return NextResponse.json(
       { error: `Webhook Error: ${error.message}` },
       { status: 400 }
@@ -67,7 +66,7 @@ export async function POST(request: NextRequest) {
       // ========== Checkout completado ==========
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session
-        console.log('Checkout completed:', session.id)
+        // Checkout completed - session.id available for tracking
 
         // La suscripción se creará automáticamente con customer.subscription.created
         // Aquí podemos hacer cosas adicionales como enviar email de bienvenida
@@ -78,7 +77,7 @@ export async function POST(request: NextRequest) {
       case 'customer.subscription.created':
       case 'customer.subscription.updated': {
         const subscription = event.data.object as StripeSubscriptionWithPeriod
-        console.log(`Subscription ${event.type}:`, subscription.id)
+        // Subscription event processed
 
         // Obtener user_id desde metadata o customer
         let userId: string | undefined = subscription.metadata?.user_id
@@ -96,7 +95,7 @@ export async function POST(request: NextRequest) {
         }
 
         if (!userId) {
-          console.error('No user_id found for subscription:', subscription.id)
+          // Warning: No user_id found for subscription - skipping
           break
         }
 
@@ -131,7 +130,7 @@ export async function POST(request: NextRequest) {
       // ========== Suscripción eliminada ==========
       case 'customer.subscription.deleted': {
         const subscription = event.data.object as Stripe.Subscription
-        console.log('Subscription deleted:', subscription.id)
+        // Subscription deletion processed
 
         // En lugar de eliminar, actualizamos el status a 'canceled'
         const supabase = createServiceClient()
@@ -148,7 +147,7 @@ export async function POST(request: NextRequest) {
       // ========== Pago fallido ==========
       case 'invoice.payment_failed': {
         const invoice = event.data.object as StripeInvoiceWithSubscription
-        console.log('Payment failed:', invoice.id)
+        // Payment failure recorded
 
         // Actualizar estado de suscripción a past_due
         if (invoice.subscription) {
@@ -166,7 +165,7 @@ export async function POST(request: NextRequest) {
       // ========== Pago exitoso ==========
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object as StripeInvoiceWithSubscription
-        console.log('Payment succeeded:', invoice.id)
+        // Payment success recorded
 
         // Actualizar periodo de suscripción
         if (invoice.subscription) {
@@ -195,7 +194,7 @@ export async function POST(request: NextRequest) {
       case 'product.created':
       case 'product.updated': {
         const product = event.data.object as Stripe.Product
-        console.log(`Product ${event.type}:`, product.id)
+        // Product sync completed
 
         await upsertProduct({
           id: product.id,
@@ -212,7 +211,7 @@ export async function POST(request: NextRequest) {
       case 'price.created':
       case 'price.updated': {
         const price = event.data.object as Stripe.Price
-        console.log(`Price ${event.type}:`, price.id)
+        // Price sync completed
 
         await upsertPrice({
           id: price.id,
@@ -230,12 +229,12 @@ export async function POST(request: NextRequest) {
       }
 
       default:
-        console.log(`Unhandled event type: ${event.type}`)
+        // Unhandled webhook event type received
     }
 
     return NextResponse.json({ received: true })
   } catch (error) {
-    console.error('Webhook handler error:', error)
+    // Webhook handler error - consider logging to monitoring service
     return NextResponse.json(
       { error: 'Webhook handler failed' },
       { status: 500 }

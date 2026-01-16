@@ -22,9 +22,8 @@ const protectedRoutes = ['/dashboard', '/estudiar', '/progreso', '/simulacros', 
 // Rutas de autenticación (redirigir a dashboard si ya está logueado)
 const authRoutes = ['/login', '/register']
 
-// Rutas que requieren plan premium (tutor_ia incluido en premium)
-// La verificación se hace con PlanGate en el cliente
-// const premiumRoutes = ['/simulacros', '/tutor']
+// Rutas que requieren plan premium - verificación server-side
+const premiumRoutes = ['/simulacros', '/tutor']
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
@@ -32,9 +31,22 @@ export async function middleware(req: NextRequest) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  // MODO DEMO: Si no hay Supabase configurado, permitir acceso
+  // Verificar configuración de Supabase
+  // En producción, las variables DEBEN estar configuradas
   if (!supabaseUrl || supabaseUrl.trim() === '' || !supabaseAnonKey || supabaseAnonKey.trim() === '') {
-    return res
+    // En desarrollo, permitir modo demo solo si NODE_ENV es development
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('[Middleware] Modo demo activo - Supabase no configurado')
+      return res
+    }
+    // En producción, redirigir a página de error/mantenimiento
+    const maintenanceUrl = new URL('/maintenance', req.url)
+    // Permitir acceso a rutas públicas básicas
+    const publicPaths = ['/', '/login', '/register', '/privacidad', '/terminos', '/contacto', '/maintenance']
+    if (publicPaths.includes(req.nextUrl.pathname)) {
+      return res
+    }
+    return NextResponse.redirect(maintenanceUrl)
   }
 
   const supabase = createServerClient(
@@ -74,6 +86,29 @@ export async function middleware(req: NextRequest) {
   // Redirigir a dashboard si ya tiene sesión y accede a login/register
   if (isAuthRoute && session) {
     return NextResponse.redirect(new URL('/dashboard', req.url))
+  }
+
+  // Verificación server-side de plan premium
+  const isPremiumRoute = premiumRoutes.some(route =>
+    req.nextUrl.pathname.startsWith(route)
+  )
+
+  if (isPremiumRoute && session) {
+    // Verificar si el usuario tiene suscripción activa
+    const { data: subscription } = await supabase
+      .from('subscriptions')
+      .select('status')
+      .eq('user_id', session.user.id)
+      .in('status', ['active', 'trialing'])
+      .single()
+
+    // Si no tiene suscripción activa, redirigir a página de precios
+    if (!subscription) {
+      const upgradeUrl = new URL('/precios', req.url)
+      upgradeUrl.searchParams.set('upgrade', 'required')
+      upgradeUrl.searchParams.set('feature', req.nextUrl.pathname.split('/')[1])
+      return NextResponse.redirect(upgradeUrl)
+    }
   }
 
   return res

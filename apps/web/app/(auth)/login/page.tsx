@@ -22,7 +22,22 @@ function LoginForm() {
 
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirectTo = searchParams.get('redirectTo') || '/dashboard'
+
+  // Validar que redirectTo sea una URL interna para prevenir Open Redirect
+  const getValidRedirectUrl = (url: string | null): string => {
+    if (!url) return '/dashboard'
+    // Solo permitir URLs que empiecen con / y no con // (evita //malicious.com)
+    if (url.startsWith('/') && !url.startsWith('//')) {
+      // Lista blanca de rutas permitidas
+      const allowedPaths = ['/dashboard', '/estudiar', '/progreso', '/simulacros', '/perfil', '/tutor', '/precios']
+      const basePath = url.split('?')[0]
+      if (allowedPaths.some(path => basePath.startsWith(path))) {
+        return url
+      }
+    }
+    return '/dashboard'
+  }
+  const redirectTo = getValidRedirectUrl(searchParams.get('redirectTo'))
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()

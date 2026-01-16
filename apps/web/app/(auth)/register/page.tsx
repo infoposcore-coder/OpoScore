@@ -37,8 +37,23 @@ export default function RegisterPage() {
       return
     }
 
-    if (password.length < 6) {
-      setError('La contraseña debe tener al menos 6 caracteres')
+    // Validación de contraseña robusta
+    const passwordErrors: string[] = []
+    if (password.length < 8) {
+      passwordErrors.push('mínimo 8 caracteres')
+    }
+    if (!/[A-Z]/.test(password)) {
+      passwordErrors.push('una mayúscula')
+    }
+    if (!/[a-z]/.test(password)) {
+      passwordErrors.push('una minúscula')
+    }
+    if (!/[0-9]/.test(password)) {
+      passwordErrors.push('un número')
+    }
+
+    if (passwordErrors.length > 0) {
+      setError(`La contraseña debe tener: ${passwordErrors.join(', ')}`)
       setLoading(false)
       return
     }
@@ -151,7 +166,7 @@ export default function RegisterPage() {
               <Input
                 id="password"
                 type="password"
-                placeholder="Mínimo 6 caracteres"
+                placeholder="Mín. 8 caracteres, mayúscula y número"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
