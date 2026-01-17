@@ -106,8 +106,8 @@ const nextConfig = {
 
   // Experimental features
   experimental: {
-    // Optimizar CSS
-    optimizeCss: true,
+    // Optimizar CSS (disabled - requires critters package)
+    // optimizeCss: true,
     // Optimizar paquetes externos
     optimizePackageImports: [
       "lucide-react",

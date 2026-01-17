@@ -10,6 +10,19 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
+// Tipo para oposición en listado (compatible con DB y demo)
+interface OposicionListItem {
+  id: string
+  slug: string
+  nombre: string
+  descripcion: string | null
+  categoria: string
+  activa: boolean
+  nivel?: string
+  total_temas?: number
+  total_preguntas?: number
+}
+
 export const metadata: Metadata = {
   title: 'Oposiciones Disponibles | Academia Online',
   description: 'Prepara tus oposiciones con OpoScore. Auxiliar Administrativo, Tramitación Procesal, Correos y más. Tests ilimitados, tutor IA y predicción de aprobado.',
@@ -45,7 +58,7 @@ const categoryIcons: Record<string, string> = {
 }
 
 // Datos estáticos para demo si no hay datos
-const oposicionesDemo = [
+const oposicionesDemo: OposicionListItem[] = [
   {
     id: '1',
     slug: 'auxiliar-administrativo-age',
@@ -94,22 +107,29 @@ const oposicionesDemo = [
 
 export default async function OposicionesPage() {
   // Obtener oposiciones del cache
-  let oposiciones = await getOposiciones()
+  const oposicionesDb = await getOposiciones()
 
-  // Si no hay oposiciones, usar datos de demo
-  if (!oposiciones || oposiciones.length === 0) {
-    oposiciones = oposicionesDemo as typeof oposiciones
-  }
+  // Usar datos de demo si no hay oposiciones
+  const oposiciones: OposicionListItem[] = (oposicionesDb && oposicionesDb.length > 0)
+    ? oposicionesDb.map(op => ({
+        id: op.id,
+        slug: op.slug,
+        nombre: op.nombre,
+        descripcion: op.descripcion,
+        categoria: op.categoria,
+        activa: op.activa,
+      }))
+    : oposicionesDemo
 
   // Agrupar por categoría
   const oposicionesPorCategoria = oposiciones.reduce((acc, oposicion) => {
-    const categoria = (oposicion as { categoria?: string }).categoria || 'default'
+    const categoria = oposicion.categoria || 'default'
     if (!acc[categoria]) {
       acc[categoria] = []
     }
     acc[categoria].push(oposicion)
     return acc
-  }, {} as Record<string, typeof oposiciones>)
+  }, {} as Record<string, OposicionListItem[]>)
 
   const categorias = Object.keys(oposicionesPorCategoria)
 

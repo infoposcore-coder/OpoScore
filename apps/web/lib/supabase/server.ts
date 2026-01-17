@@ -54,3 +54,46 @@ export function createServiceClient() {
     }
   )
 }
+
+// Cliente estático para operaciones públicas (sin cookies)
+// Usado en unstable_cache donde cookies no están disponibles
+export function createStaticClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  // Si no hay env vars, retornar un cliente mock para build time
+  if (!url || !key) {
+    return {
+      from: () => ({
+        select: () => ({
+          eq: () => ({
+            eq: () => ({
+              order: () => Promise.resolve({ data: [], error: null }),
+              single: () => Promise.resolve({ data: null, error: null }),
+              limit: () => ({
+                single: () => Promise.resolve({ data: null, error: null }),
+              }),
+            }),
+            order: () => Promise.resolve({ data: [], error: null }),
+            single: () => Promise.resolve({ data: null, error: null }),
+          }),
+          order: () => Promise.resolve({ data: [], error: null }),
+          not: () => Promise.resolve({ data: [], error: null, count: 0 }),
+        }),
+      }),
+    } as unknown as ReturnType<typeof createServerClient<Database>>
+  }
+
+  return createServerClient<Database>(
+    url,
+    key,
+    {
+      cookies: {
+        getAll() {
+          return []
+        },
+        setAll() {},
+      },
+    }
+  )
+}

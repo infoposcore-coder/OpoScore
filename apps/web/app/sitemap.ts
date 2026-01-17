@@ -67,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Páginas dinámicas de oposiciones
   const oposicionPages: MetadataRoute.Sitemap = oposiciones.map((oposicion) => ({
     url: `${BASE_URL}/oposiciones/${oposicion.slug}`,
-    lastModified: new Date(oposicion.updated_at || oposicion.created_at || new Date()),
+    lastModified: new Date(oposicion.created_at || new Date()),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))

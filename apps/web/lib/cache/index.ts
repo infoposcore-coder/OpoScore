@@ -4,7 +4,22 @@
  */
 
 import { unstable_cache } from 'next/cache'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createStaticClient } from '@/lib/supabase/server'
+import type { Oposicion, Profile } from '@/types/database'
+
+// Tipo extendido para oposición con bloques y temas
+export type OposicionWithBloques = Oposicion & {
+  bloques?: Array<{
+    id: string
+    nombre: string
+    orden: number
+    temas?: Array<{
+      id: string
+      nombre: string
+      orden: number
+    }>
+  }>
+}
 
 // ============================================
 // CACHE TAGS
@@ -47,10 +62,11 @@ export const CacheDurations = {
 
 /**
  * Obtiene todas las oposiciones activas (cached)
+ * Usa createStaticClient para evitar acceso a cookies en unstable_cache
  */
 export const getOposiciones = unstable_cache(
-  async () => {
-    const supabase = await createClient()
+  async (): Promise<Oposicion[]> => {
+    const supabase = createStaticClient()
     const { data, error } = await supabase
       .from('oposiciones')
       .select('*')
@@ -62,7 +78,7 @@ export const getOposiciones = unstable_cache(
       return []
     }
 
-    return data || []
+    return (data as Oposicion[]) || []
   },
   [CacheTags.OPOSICIONES],
   {
@@ -73,10 +89,11 @@ export const getOposiciones = unstable_cache(
 
 /**
  * Obtiene una oposición por slug (cached)
+ * Usa createStaticClient para evitar acceso a cookies en unstable_cache
  */
 export const getOposicionBySlug = unstable_cache(
-  async (slug: string) => {
-    const supabase = await createClient()
+  async (slug: string): Promise<OposicionWithBloques | null> => {
+    const supabase = createStaticClient()
     const { data, error } = await supabase
       .from('oposiciones')
       .select(`
@@ -91,7 +108,7 @@ export const getOposicionBySlug = unstable_cache(
       .single()
 
     if (error) return null
-    return data
+    return data as OposicionWithBloques
   },
   ['oposicion-by-slug'],
   {
@@ -102,10 +119,11 @@ export const getOposicionBySlug = unstable_cache(
 
 /**
  * Obtiene el temario completo de una oposición (cached)
+ * Usa createStaticClient para evitar acceso a cookies en unstable_cache
  */
 export const getTemario = unstable_cache(
   async (oposicionId: string) => {
-    const supabase = await createClient()
+    const supabase = createStaticClient()
     const { data, error } = await supabase
       .from('bloques')
       .select(`
@@ -137,16 +155,17 @@ export const getTemario = unstable_cache(
 
 /**
  * Obtiene estadísticas públicas (cached)
+ * Usa createStaticClient para evitar acceso a cookies en unstable_cache
  */
 export const getPublicStats = unstable_cache(
   async () => {
-    const supabase = await createClient()
+    const supabase = createStaticClient()
 
     // Ejecutar queries en paralelo
     const [usersResult, preguntasResult, testsResult] = await Promise.all([
       supabase.from('profiles').select('id', { count: 'exact', head: true }),
-      supabase.from('preguntas').select('id', { count: 'exact', head: true }).eq('activa', true),
-      supabase.from('tests').select('id', { count: 'exact', head: true }).eq('completado', true),
+      supabase.from('preguntas').select('id', { count: 'exact', head: true }),
+      supabase.from('tests').select('id', { count: 'exact', head: true }).not('completed_at', 'is', null),
     ])
 
     return {
@@ -171,7 +190,7 @@ export const getPublicStats = unstable_cache(
  * Obtiene el perfil de un usuario (cached)
  */
 export const getUserProfile = unstable_cache(
-  async (userId: string) => {
+  async (userId: string): Promise<Profile | null> => {
     const supabase = await createClient()
     const { data, error } = await supabase
       .from('profiles')
@@ -180,7 +199,7 @@ export const getUserProfile = unstable_cache(
       .single()
 
     if (error) return null
-    return data
+    return data as Profile
   },
   ['user-profile'],
   {

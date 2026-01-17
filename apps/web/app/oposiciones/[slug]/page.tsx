@@ -6,13 +6,42 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getOposicionBySlug, getOposiciones } from '@/lib/cache'
+import { getOposicionBySlug, getOposiciones, type OposicionWithBloques } from '@/lib/cache'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface PageProps {
   params: Promise<{ slug: string }>
+}
+
+// Tipo extendido para datos de demo con campos adicionales
+interface OposicionDisplay extends Partial<OposicionWithBloques> {
+  id: string
+  slug: string
+  nombre: string
+  descripcion: string | null
+  nivel?: string
+  convocatoria?: string
+  plazas?: number
+  requisitos?: string[]
+  temario?: string[]
+  bloques?: Array<{
+    id: string
+    nombre: string
+    orden: number
+    temas?: Array<{
+      id: string
+      nombre: string
+      orden: number
+    }>
+  }>
+  stats?: {
+    totalTemas: number
+    totalPreguntas: number
+    aprobados: number
+    tasaAprobados: number
+  }
 }
 
 // Generar rutas estáticas
@@ -65,7 +94,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Datos de demo
-const oposicionDemo = {
+const oposicionDemo: OposicionDisplay = {
   id: '1',
   slug: 'auxiliar-administrativo-age',
   nombre: 'Auxiliar Administrativo del Estado',
@@ -130,18 +159,23 @@ const oposicionDemo = {
 
 export default async function OposicionPage({ params }: PageProps) {
   const { slug } = await params
-  let oposicion = await getOposicionBySlug(slug)
+  const oposicionDb = await getOposicionBySlug(slug)
 
   // Usar datos de demo si no hay datos reales
-  if (!oposicion) {
+  let data: OposicionDisplay
+  if (!oposicionDb) {
     if (slug === 'auxiliar-administrativo-age') {
-      oposicion = oposicionDemo as unknown as typeof oposicion
+      data = oposicionDemo
     } else {
       notFound()
     }
+  } else {
+    // Convertir datos de DB a formato display
+    data = {
+      ...oposicionDb,
+      descripcion: oposicionDb.descripcion ?? '',
+    }
   }
-
-  const data = oposicion as typeof oposicionDemo
 
   return (
     <div className="min-h-screen bg-background">
