@@ -1,16 +1,21 @@
-// ===========================================
-// OpoScore - Schema.org JSON-LD Components
-// Para mejorar SEO y rich snippets
-// ===========================================
+/**
+ * JSON-LD Structured Data Components
+ * Para mejor SEO y Rich Snippets
+ */
+
+// ============================================
+// ORGANIZATION
+// ============================================
 
 export function OrganizationJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
     name: 'OpoScore',
+    alternateName: 'Academia OpoScore',
     url: 'https://oposcore.es',
-    logo: 'https://oposcore.es/icons/icon-512x512.png',
-    description: 'Academia de oposiciones online con IA predictiva. La primera plataforma que te dice objetivamente cuando estas listo para aprobar.',
+    logo: 'https://oposcore.es/icons/icon-512x512.svg',
+    description: 'Academia de oposiciones online con IA predictiva. La primera plataforma que te dice objetivamente cuándo estás listo para aprobar.',
     foundingDate: '2024',
     sameAs: [
       'https://twitter.com/oposcore',
@@ -22,6 +27,7 @@ export function OrganizationJsonLd() {
       email: 'contacto@oposcore.es',
       contactType: 'customer service',
       availableLanguage: ['Spanish'],
+      areaServed: 'ES',
     },
     address: {
       '@type': 'PostalAddress',
@@ -41,60 +47,24 @@ export function OrganizationJsonLd() {
   )
 }
 
-export function CourseJsonLd({
-  name,
-  description,
-  provider = 'OpoScore',
-  url,
-}: {
-  name: string
-  description: string
-  provider?: string
-  url?: string
-}) {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name,
-    description,
-    provider: {
-      '@type': 'Organization',
-      name: provider,
-      sameAs: 'https://oposcore.es',
-    },
-    ...(url && { url }),
-    inLanguage: 'es',
-    courseMode: 'online',
-    isAccessibleForFree: false,
-    offers: {
-      '@type': 'Offer',
-      category: 'Subscription',
-      priceCurrency: 'EUR',
-      price: '19',
-      availability: 'https://schema.org/InStock',
-    },
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
-}
+// ============================================
+// WEBSITE
+// ============================================
 
 export function WebsiteJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'OpoScore',
+    alternateName: 'Academia OpoScore',
     url: 'https://oposcore.es',
-    description: 'Academia de oposiciones online con IA predictiva',
+    description: 'Academia de oposiciones online con IA predictiva. Tests ilimitados y predicción de aprobado.',
+    inLanguage: 'es-ES',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://oposcore.es/buscar?q={search_term_string}',
+        urlTemplate: 'https://oposcore.es/oposiciones?q={search_term_string}',
       },
       'query-input': 'required name=search_term_string',
     },
@@ -108,7 +78,79 @@ export function WebsiteJsonLd() {
   )
 }
 
-export function FAQJsonLd({ faqs }: { faqs: { question: string; answer: string }[] }) {
+// ============================================
+// COURSE (para páginas de oposiciones)
+// ============================================
+
+interface CourseJsonLdProps {
+  name: string
+  description: string
+  url?: string
+  provider?: string
+  price?: number
+  currency?: string
+}
+
+export function CourseJsonLd({
+  name,
+  description,
+  url,
+  provider = 'OpoScore',
+  price = 19,
+  currency = 'EUR',
+}: CourseJsonLdProps) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name,
+    description,
+    ...(url && { url }),
+    provider: {
+      '@type': 'Organization',
+      name: provider,
+      sameAs: 'https://oposcore.es',
+    },
+    inLanguage: 'es',
+    courseMode: 'online',
+    isAccessibleForFree: false,
+    offers: {
+      '@type': 'Offer',
+      category: 'Subscription',
+      price: String(price),
+      priceCurrency: currency,
+      availability: 'https://schema.org/InStock',
+      url: url || 'https://oposcore.es/precios',
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'online',
+      courseWorkload: 'P6M',
+    },
+    educationalLevel: 'beginner to advanced',
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+// ============================================
+// FAQ
+// ============================================
+
+interface FAQItem {
+  question: string
+  answer: string
+}
+
+interface FAQJsonLdProps {
+  faqs: FAQItem[]
+}
+
+export function FAQJsonLd({ faqs }: FAQJsonLdProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -130,6 +172,10 @@ export function FAQJsonLd({ faqs }: { faqs: { question: string; answer: string }
   )
 }
 
+// ============================================
+// SOFTWARE APPLICATION
+// ============================================
+
 export function SoftwareApplicationJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
@@ -149,6 +195,15 @@ export function SoftwareApplicationJsonLd() {
       bestRating: '5',
       worstRating: '1',
     },
+    description: 'Academia de oposiciones con IA. Tests ilimitados y predicción de aprobado.',
+    downloadUrl: 'https://oposcore.es',
+    featureList: [
+      'Tests ilimitados',
+      'Tutor IA 24/7',
+      'Predicción de aprobado',
+      'Flashcards con repetición espaciada',
+      'Simulacros cronometrados',
+    ],
   }
 
   return (
@@ -159,11 +214,20 @@ export function SoftwareApplicationJsonLd() {
   )
 }
 
-export function BreadcrumbJsonLd({
-  items,
-}: {
-  items: { name: string; url: string }[]
-}) {
+// ============================================
+// BREADCRUMB
+// ============================================
+
+interface BreadcrumbItem {
+  name: string
+  url: string
+}
+
+interface BreadcrumbJsonLdProps {
+  items: BreadcrumbItem[]
+}
+
+export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -173,6 +237,161 @@ export function BreadcrumbJsonLd({
       name: item.name,
       item: item.url,
     })),
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+// ============================================
+// REVIEW / TESTIMONIAL
+// ============================================
+
+interface Review {
+  author: string
+  rating: number
+  text: string
+  date?: string
+}
+
+interface ReviewJsonLdProps {
+  reviews: Review[]
+  itemName: string
+  itemUrl: string
+}
+
+export function ReviewJsonLd({ reviews, itemName, itemUrl }: ReviewJsonLdProps) {
+  const averageRating = reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: itemName,
+    url: itemUrl,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: averageRating.toFixed(1),
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: reviews.length,
+    },
+    review: reviews.map((review) => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: review.author,
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating,
+        bestRating: '5',
+        worstRating: '1',
+      },
+      reviewBody: review.text,
+      datePublished: review.date || new Date().toISOString().split('T')[0],
+    })),
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+// ============================================
+// HOW TO (para tutoriales)
+// ============================================
+
+interface HowToStep {
+  name: string
+  text: string
+  url?: string
+  image?: string
+}
+
+interface HowToJsonLdProps {
+  name: string
+  description: string
+  steps: HowToStep[]
+  totalTime?: string
+}
+
+export function HowToJsonLd({ name, description, steps, totalTime }: HowToJsonLdProps) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    ...(totalTime && { totalTime }),
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url && { url: step.url }),
+      ...(step.image && { image: step.image }),
+    })),
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+// ============================================
+// EDUCATIONAL OCCUPATION (para oposiciones)
+// ============================================
+
+interface OccupationJsonLdProps {
+  name: string
+  description: string
+  educationRequirements: string
+  salary?: {
+    min: number
+    max: number
+    currency?: string
+  }
+}
+
+export function OccupationJsonLd({
+  name,
+  description,
+  educationRequirements,
+  salary,
+}: OccupationJsonLdProps) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Occupation',
+    name,
+    description,
+    educationRequirements: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: educationRequirements,
+    },
+    occupationLocation: {
+      '@type': 'Country',
+      name: 'Spain',
+    },
+    ...(salary && {
+      estimatedSalary: {
+        '@type': 'MonetaryAmountDistribution',
+        name: 'Salario anual',
+        currency: salary.currency || 'EUR',
+        minValue: salary.min,
+        maxValue: salary.max,
+        percentile10: salary.min,
+        percentile90: salary.max,
+      },
+    }),
   }
 
   return (
