@@ -255,12 +255,17 @@ function PreciosContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Badge variant="secondary" className="mb-4">Precios transparentes</Badge>
+          <Badge className="mb-4 bg-gradient-to-r from-primary to-emerald-500 text-white border-0">
+            Machine Learning Real
+          </Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Elige tu plan de preparación
+            Más algoritmos = Mayor precisión
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Invierte en tu futuro. Todos los planes de pago incluyen {TRIAL_DAYS} días de prueba gratuita.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
+            Cada plan desbloquea algoritmos más avanzados de Machine Learning para predecir tu aprobado.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {TRIAL_DAYS} días de prueba gratis en todos los planes de pago. Sin compromiso.
           </p>
 
           {/* Toggle anual/mensual */}

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://opometrics.es/forgot-password</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es/contacto</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es/privacidad</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es/terminos</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es/maintenance</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es/precios</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es/oposiciones</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://opometrics.es/sitemap.xml</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/forgot-password</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/sitemap.xml</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/contacto</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/precios</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/privacidad</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/terminos</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/maintenance</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/administrativo-estado-c1</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/agente-hacienda-publica</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/auxiliar-administrativo-estado</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/auxilio-judicial</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/ayudante-instituciones-penitenciarias</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/celador-servicio-salud</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/correos-personal-laboral</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/enfermero-servicio-salud</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/gestion-administracion-civil-a2</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/guardia-civil-cabos-guardias</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/maestro-educacion-primaria</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/policia-nacional-escala-basica</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/tramitacion-procesal-administrativa</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones/tropa-marineria</loc><lastmod>2026-01-18T16:40:35.296Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

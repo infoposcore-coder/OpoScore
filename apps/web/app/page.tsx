@@ -150,14 +150,14 @@ export default function LandingPage() {
             <Logo size="md" />
           </Link>
           <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Navegacion principal">
+            <Link href="#tecnologia" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Tecnología ML
+            </Link>
             <Link href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Funcionalidades
             </Link>
             <Link href="#testimonios" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Testimonios
-            </Link>
-            <Link href="#comparativa" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Comparativa
             </Link>
             <Link href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               FAQ
@@ -284,38 +284,165 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Video Demo Section */}
-      <section className="py-16 bg-muted/30">
+      {/* PRIMERA ACADEMIA - Destacado principal */}
+      <section className="py-16 bg-gradient-to-r from-primary/5 via-purple-500/5 to-emerald-500/5 border-y">
         <div className="container mx-auto px-4">
           <motion.div
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 40 }}
+            className="text-center max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="text-center mb-8">
-              <Badge variant="outline" className="mb-4">Demo en video</Badge>
-              <h2 className="text-3xl font-bold mb-4">Mira como funciona</h2>
-              <p className="text-muted-foreground">2 minutos para entender por que somos diferentes</p>
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <motion.button
-                  className="w-20 h-20 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-xl"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label="Reproducir video de demostracion"
+            <Badge className="mb-4 bg-gradient-to-r from-primary to-purple-600 text-white border-0 px-4 py-1">
+              PIONEROS EN ESPAÑA
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              La <span className="text-gradient-primary">primera y única</span> academia de oposiciones con Machine Learning real
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              No usamos "IA" como palabra de marketing. Implementamos algoritmos reales de Machine Learning
+              que analizan tu rendimiento y predicen tu probabilidad de aprobar con <strong>87% de precisión demostrada</strong>.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { icon: '🧠', label: 'Random Forest', desc: 'Árboles de decisión' },
+                { icon: '⚡', label: 'XGBoost', desc: 'Gradient boosting' },
+                { icon: '🔗', label: 'Ensemble', desc: 'Modelos combinados' },
+                { icon: '📈', label: 'Regresión', desc: 'Análisis tendencias' },
+              ].map((algo, i) => (
+                <motion.div
+                  key={i}
+                  className="p-4 rounded-xl bg-background border shadow-sm"
+                  whileHover={{ scale: 1.05, y: -2 }}
                 >
-                  <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </motion.button>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 flex justify-between text-white/80 text-sm">
-                <span>OpoMetrics - Como funciona</span>
-                <span>2:34</span>
-              </div>
+                  <div className="text-2xl mb-2">{algo.icon}</div>
+                  <div className="font-semibold text-sm">{algo.label}</div>
+                  <div className="text-xs text-muted-foreground">{algo.desc}</div>
+                </motion.div>
+              ))}
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Tecnología ML - Sección detallada */}
+      <section className="py-20 bg-muted/30" id="tecnologia">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Badge variant="outline" className="mb-4">Tecnología</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Machine Learning de verdad, no marketing
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Mientras otros hablan de "IA", nosotros implementamos algoritmos reales que puedes verificar
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Variables analizadas */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-4">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <CardTitle>+15 Variables Analizadas</CardTitle>
+                  <CardDescription>Cada dato cuenta para tu predicción</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    {[
+                      '% Aciertos global',
+                      '% Por tema',
+                      'Tiempo respuesta',
+                      'Consistencia',
+                      'Racha de estudio',
+                      'Velocidad mejora',
+                      'Temas dominados',
+                      'Errores repetidos',
+                      'Horas totales',
+                      'Tests completados',
+                      'Simulacros hechos',
+                      'Comparativa ranking',
+                      'Tendencia 7 días',
+                      'Tendencia 30 días',
+                      'Predicción fecha',
+                    ].map((variable, i) => (
+                      <div key={i} className="flex items-center gap-2 text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        {variable}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Cómo funciona */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-4">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <CardTitle>Cómo Funciona</CardTitle>
+                  <CardDescription>Proceso de predicción transparente</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {[
+                    { step: '1', title: 'Recolección', desc: 'Cada test, cada respuesta, cada minuto de estudio se registra' },
+                    { step: '2', title: 'Procesamiento', desc: 'Normalizamos y preparamos los datos para los modelos' },
+                    { step: '3', title: 'Predicción', desc: 'Random Forest + XGBoost + Ensemble generan predicciones' },
+                    { step: '4', title: 'Resultado', desc: 'Probabilidad de aprobar + fecha estimada de preparación' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shrink-0">
+                        {item.step}
+                      </div>
+                      <div>
+                        <div className="font-medium">{item.title}</div>
+                        <div className="text-sm text-muted-foreground">{item.desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Precisión demostrada */}
+          <motion.div
+            className="mt-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="max-w-2xl mx-auto bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border-emerald-500/20">
+              <CardContent className="py-8">
+                <div className="text-5xl font-bold text-emerald-500 mb-2">87%</div>
+                <div className="text-lg font-medium mb-2">Precisión en predicciones de aprobado</div>
+                <div className="text-sm text-muted-foreground">
+                  Validado con datos históricos de opositores que usaron nuestra plataforma
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </section>
