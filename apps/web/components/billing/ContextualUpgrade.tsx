@@ -62,7 +62,7 @@ export function ContextualUpgrade({
   onClose,
 }: ContextualUpgradeProps) {
   const [visible, setVisible] = useState(true)
-  const { isPremium } = useSubscription()
+  const { isPro } = useSubscription()
 
   useEffect(() => {
     if (autoClose && autoClose > 0) {
@@ -74,8 +74,8 @@ export function ContextualUpgrade({
     }
   }, [autoClose, onClose])
 
-  // No mostrar si ya es premium
-  if (isPremium || !visible) {
+  // No mostrar si ya es pro o superior
+  if (isPro || !visible) {
     return null
   }
 
@@ -120,10 +120,10 @@ export function ContextualUpgrade({
  */
 export function useUpgradePrompt() {
   const [promptContext, setPromptContext] = useState<ContextualUpgradeProps['context'] | null>(null)
-  const { isPremium, canAccess } = useSubscription()
+  const { isPro, canAccess } = useSubscription()
 
   const showUpgrade = (context: ContextualUpgradeProps['context']) => {
-    if (!isPremium) {
+    if (!isPro) {
       setPromptContext(context)
     }
   }

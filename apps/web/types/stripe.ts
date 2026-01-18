@@ -6,6 +6,7 @@ import type { PlanType } from '@/lib/stripe/config'
 
 export interface SubscriptionData {
   planType: PlanType
+  plan: PlanType // Alias for planType for convenience
   status: string
   currentPeriodEnd: Date | null
   cancelAtPeriodEnd: boolean

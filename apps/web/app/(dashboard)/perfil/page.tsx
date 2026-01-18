@@ -48,7 +48,7 @@ export default function PerfilPage() {
   const [guardando, setGuardando] = useState(false)
   const [mensaje, setMensaje] = useState<{ tipo: 'success' | 'error'; texto: string } | null>(null)
 
-  const { subscription, isPremium, isElite, isLoading: loadingSubscription } = useSubscription()
+  const { subscription, isPro, isElite, isLoading: loadingSubscription } = useSubscription()
   const { openPortal } = useBillingPortal()
 
   // Cargar datos del usuario
@@ -70,7 +70,7 @@ export default function PerfilPage() {
             nombre: profile.full_name || 'Usuario',
             email: user.email || '',
             miembroDesde: profile.created_at || DEFAULT_USER_DATA.miembroDesde,
-            plan: isPremium ? (isElite ? 'elite' : 'premium') : 'free',
+            plan: isPro ? (isElite ? 'elite' : 'pro') : 'free',
           })
           setNombre(profile.full_name || '')
         }
@@ -78,7 +78,7 @@ export default function PerfilPage() {
     }
 
     loadUserData()
-  }, [isPremium, isElite])
+  }, [isPro, isElite])
 
   // Guardar cambios del perfil
   const handleGuardarCambios = async () => {
@@ -333,7 +333,7 @@ export default function PerfilPage() {
                   <div className="h-20 bg-muted rounded-lg" />
                   <div className="h-10 bg-muted rounded w-32" />
                 </div>
-              ) : isPremium || isElite ? (
+              ) : isPro || isElite ? (
                 <>
                   <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
                     <div className="flex items-center justify-between mb-2">
