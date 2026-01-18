@@ -122,15 +122,29 @@ Implementación completa de sistema de métricas basadas en Machine Learning par
 | Hora | Tarea | Estado |
 |------|-------|--------|
 | -- | Crear documento tracking | ✅ |
-| -- | Crear migración SQL tablas | ⏳ |
-| -- | Implementar tracking responses | ⏳ |
-| -- | Crear API stats básicas | ⏳ |
-| -- | Componente BasicStats | ⏳ |
-| -- | Componente ProgressChart | ⏳ |
-| -- | Componente RankingCard | ⏳ |
-| -- | Componente PredictionGauge | ⏳ |
-| -- | Integrar en /progreso | ⏳ |
-| -- | Testing completo | ⏳ |
+| -- | Crear migración SQL tablas | ✅ |
+| -- | Implementar tracking responses | ✅ |
+| -- | Crear API stats básicas | ✅ |
+| -- | Componente BasicStats | ✅ |
+| -- | Componente ProgressChart | ✅ |
+| -- | Componente RankingCard | ✅ |
+| -- | Componente PredictionGauge | ✅ |
+| -- | Componente BloquesAnalysis | ✅ |
+| -- | Integrar en /progreso | ✅ |
+| -- | Hacer código robusto con fallbacks | ✅ |
+| -- | Push a producción | ✅ |
+| -- | Testing con usuario | ✅ (parcial) |
+
+### PENDIENTE: Ejecutar Migración SQL
+La migración `00010_ml_metrics_tables.sql` necesita ser ejecutada en Supabase Dashboard.
+
+**Pasos:**
+1. Ir a https://supabase.com/dashboard/project/bsnnlapjqmpvlikfbgcz
+2. Ir a SQL Editor
+3. Pegar el contenido de `supabase/migrations/00010_ml_metrics_tables.sql`
+4. Ejecutar
+
+Mientras tanto, el sistema funciona con datos de fallback de las tablas existentes.
 
 ---
 
