@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Weekly Progress Chart
+// OpoMetrics - Weekly Progress Chart
 // Grafico de progreso semanal con Recharts
 // ===========================================
 
@@ -42,7 +42,7 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
     <div className="bg-card border rounded-lg shadow-lg p-3 text-sm">
       <p className="font-medium mb-2">{label}</p>
       <div className="space-y-1 text-muted-foreground">
-        <p>OpoScore: <span className="text-foreground font-medium">{data.score}</span></p>
+        <p>OpoMetrics: <span className="text-foreground font-medium">{data.score}</span></p>
         <p>Tests: <span className="text-foreground font-medium">{data.tests}</span></p>
         <p>Tiempo: <span className="text-foreground font-medium">{data.minutos} min</span></p>
       </div>
@@ -130,7 +130,7 @@ export function WeeklyProgressChart({
           <div className="flex items-center justify-center gap-4 mt-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-primary" />
-              OpoScore
+              OpoMetrics
             </div>
             <div className="flex items-center gap-2">
               <div className="w-8 h-0.5 bg-green-500 border-dashed border-green-500" />

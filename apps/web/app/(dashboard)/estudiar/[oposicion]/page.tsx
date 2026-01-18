@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Pagina de Oposicion
+// OpoMetrics - Pagina de Oposicion
 // ===========================================
 
 import { createClient } from '@/lib/supabase/server'

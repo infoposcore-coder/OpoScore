@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Dashboard Error Handler
+// OpoMetrics - Dashboard Error Handler
 // ===========================================
 
 'use client'

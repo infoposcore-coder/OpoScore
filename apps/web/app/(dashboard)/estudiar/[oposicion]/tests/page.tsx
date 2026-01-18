@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Pagina de Tests
+// OpoMetrics - Pagina de Tests
 // ===========================================
 
 'use client'

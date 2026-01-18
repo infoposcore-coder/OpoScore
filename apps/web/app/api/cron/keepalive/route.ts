@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Cron Keepalive
+// OpoMetrics - Cron Keepalive
 // ===========================================
 // Endpoint para evitar que Supabase se pause por inactividad
 // Llamar cada 5-6 días con un servicio como cron-job.org

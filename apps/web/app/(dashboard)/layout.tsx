@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Dashboard Layout
+// OpoMetrics - Dashboard Layout
 // ===========================================
 
 import Link from 'next/link'
@@ -26,7 +26,7 @@ const DEMO_MODE = !process.env.NEXT_PUBLIC_SUPABASE_URL
 const mockProfile = {
   full_name: 'Usuario Demo',
   avatar_url: null,
-  email: 'demo@oposcore.es'
+  email: 'demo@opometrics.es'
 }
 
 // Tipo para el profile

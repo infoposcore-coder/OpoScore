@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Gráfico de Progreso
+// OpoMetrics - Gráfico de Progreso
 // Disponible para usuarios Básico+
 // ===========================================
 

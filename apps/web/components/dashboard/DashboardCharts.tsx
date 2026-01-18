@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Dashboard Charts
+// OpoMetrics - Dashboard Charts
 // Componente cliente para graficos del dashboard
 // ===========================================
 
@@ -35,7 +35,7 @@ const topicData = [
 ]
 
 interface DashboardChartsProps {
-  opoScore?: number
+  opoMetrics?: number
   rachaActual?: number
   mejorRacha?: number
   testsCompletados?: number
@@ -43,7 +43,7 @@ interface DashboardChartsProps {
 }
 
 export function DashboardCharts({
-  opoScore = 67,
+  opoMetrics = 67,
   rachaActual = 5,
   mejorRacha = 12,
   testsCompletados = 23,

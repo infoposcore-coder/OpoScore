@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Error Boundary Component
+// OpoMetrics - Error Boundary Component
 // ===========================================
 
 'use client'

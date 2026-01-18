@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Sistema Anti-Abandono v1
+// OpoMetrics - Sistema Anti-Abandono v1
 // ===========================================
 // Detección de señales de abandono sin ML (reglas heurísticas)
 

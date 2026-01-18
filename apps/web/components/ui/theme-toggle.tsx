@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Theme Toggle
+// OpoMetrics - Theme Toggle
 // ===========================================
 
 'use client'

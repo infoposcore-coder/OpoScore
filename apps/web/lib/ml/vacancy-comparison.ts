@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Comparación Vacantes/Competidores (ELITE)
+// OpoMetrics - Comparación Vacantes/Competidores (ELITE)
 // Sistema de análisis competitivo
 // ===========================================
 

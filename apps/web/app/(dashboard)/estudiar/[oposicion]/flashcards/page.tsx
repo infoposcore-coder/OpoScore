@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Pagina de Flashcards
+// OpoMetrics - Pagina de Flashcards
 // ===========================================
 
 'use client'

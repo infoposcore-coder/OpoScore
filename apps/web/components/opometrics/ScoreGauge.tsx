@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Componente ScoreGauge Premium
+// OpoMetrics - Componente ScoreGauge Premium
 // Con animaciones Framer Motion y Confetti
 // ===========================================
 
@@ -148,7 +148,7 @@ export function ScoreGauge({
             {animatedScore}
           </text>
 
-          {/* Label "OpoScore" */}
+          {/* Label "OpoMetrics" */}
           <text
             x={width / 2}
             y={width / 2 + fontSize / 2}
@@ -157,7 +157,7 @@ export function ScoreGauge({
             className="fill-muted-foreground font-medium"
             style={{ fontSize: labelSize }}
           >
-            OpoScore
+            OpoMetrics
           </text>
         </svg>
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - useSubscription Hook (4 planes)
+// OpoMetrics - useSubscription Hook (4 planes)
 // ===========================================
 
 'use client'

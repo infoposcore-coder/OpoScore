@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Health Check API
+// OpoMetrics - Health Check API
 // ===========================================
 
 import { NextResponse } from 'next/server'

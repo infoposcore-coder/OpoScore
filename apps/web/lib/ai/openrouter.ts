@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Cliente OpenRouter (Fallback)
+// OpoMetrics - Cliente OpenRouter (Fallback)
 // ===========================================
 
 import type { ChatMessage } from './groq'
@@ -32,8 +32,8 @@ export async function openRouterFallback(
         headers: {
           'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://oposcore.es',
-          'X-Title': 'OpoScore',
+          'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://opometrics.es',
+          'X-Title': 'OpoMetrics',
         },
         body: JSON.stringify({
           model,

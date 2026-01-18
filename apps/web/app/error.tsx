@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Global Error Handler
+// OpoMetrics - Global Error Handler
 // ===========================================
 
 'use client'
@@ -29,7 +29,7 @@ export default function GlobalError({
       <Card className="w-full max-w-md text-center">
         <CardHeader>
           <Link href="/" className="text-2xl font-bold text-primary mb-2 block">
-            OpoScore
+            OpoMetrics
           </Link>
           <div className="text-5xl mb-4">😕</div>
           <CardTitle>Error inesperado</CardTitle>

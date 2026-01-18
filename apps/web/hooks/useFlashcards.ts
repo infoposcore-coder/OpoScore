@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Hook useFlashcards
+// OpoMetrics - Hook useFlashcards
 // ===========================================
 
 'use client'
@@ -191,7 +191,7 @@ export function useReviewFlashcard() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['flashcards'] })
-      queryClient.invalidateQueries({ queryKey: ['oposcore'] })
+      queryClient.invalidateQueries({ queryKey: ['opometrics'] })
     },
   })
 }

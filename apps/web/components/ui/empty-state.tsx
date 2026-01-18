@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Empty State Components
+// OpoMetrics - Empty State Components
 // Estados vacíos profesionales
 // ===========================================
 

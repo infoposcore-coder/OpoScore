@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Mantenimiento
+// OpoMetrics - Página de Mantenimiento
 // ===========================================
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -20,8 +20,8 @@ export default function MaintenancePage() {
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
             Si necesitas ayuda urgente, contáctanos en{' '}
-            <a href="mailto:soporte@oposcore.es" className="text-primary hover:underline">
-              soporte@oposcore.es
+            <a href="mailto:soporte@opometrics.es" className="text-primary hover:underline">
+              soporte@opometrics.es
             </a>
           </p>
           <Link href="/" className="text-primary hover:underline text-sm">

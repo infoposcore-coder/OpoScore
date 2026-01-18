@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `Preparar ${oposicion.nombre} | Academia Online`,
-    description: `Prepara tu oposición de ${oposicion.nombre} con OpoScore. Tests ilimitados, tutor IA 24/7, flashcards y sistema de predicción de aprobado. ${oposicion.descripcion}`,
+    description: `Prepara tu oposición de ${oposicion.nombre} con OpoMetrics. Tests ilimitados, tutor IA 24/7, flashcards y sistema de predicción de aprobado. ${oposicion.descripcion}`,
     keywords: [
       oposicion.nombre.toLowerCase(),
       'oposiciones',
@@ -74,10 +74,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'academia online',
     ],
     openGraph: {
-      title: `${oposicion.nombre} | OpoScore`,
+      title: `${oposicion.nombre} | OpoMetrics`,
       description: oposicion.descripcion || `Prepara ${oposicion.nombre} con IA`,
       type: 'website',
-      url: `https://oposcore.es/oposiciones/${slug}`,
+      url: `https://opometrics.es/oposiciones/${slug}`,
       images: [
         {
           url: `/og/oposiciones/${slug}.png`,
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ],
     },
     alternates: {
-      canonical: `https://oposcore.es/oposiciones/${slug}`,
+      canonical: `https://opometrics.es/oposiciones/${slug}`,
     },
   }
 }
@@ -183,7 +183,7 @@ export default async function OposicionPage({ params }: PageProps) {
       <header className="border-b bg-background/95 backdrop-blur">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="font-bold text-xl text-primary">
-            OpoScore
+            OpoMetrics
           </Link>
           <nav className="flex items-center gap-4">
             <Link href="/oposiciones" className="text-sm text-muted-foreground hover:text-foreground">
@@ -273,7 +273,7 @@ export default async function OposicionPage({ params }: PageProps) {
                 <div className="text-3xl font-bold text-primary">
                   {data.stats.aprobados}
                 </div>
-                <div className="text-sm text-muted-foreground">Aprobados con OpoScore</div>
+                <div className="text-sm text-muted-foreground">Aprobados con OpoMetrics</div>
               </div>
             </div>
           </div>
@@ -398,7 +398,7 @@ export default async function OposicionPage({ params }: PageProps) {
       {/* Footer */}
       <footer className="border-t py-8 bg-muted/20">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} OpoScore. Hecho con pasión en España.
+          © {new Date().getFullYear()} OpoMetrics. Hecho con pasión en España.
         </div>
       </footer>
     </div>

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Pagina de Tema Individual
+// OpoMetrics - Pagina de Tema Individual
 // ===========================================
 
 import { createClient } from '@/lib/supabase/server'

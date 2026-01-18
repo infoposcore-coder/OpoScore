@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Study Store (Zustand)
+// OpoMetrics - Study Store (Zustand)
 // ===========================================
 
 import { create } from 'zustand'

@@ -6,7 +6,7 @@
 import { MetadataRoute } from 'next'
 import { getOposiciones } from '@/lib/cache'
 
-const BASE_URL = 'https://oposcore.es'
+const BASE_URL = 'https://opometrics.es'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Obtener oposiciones para páginas dinámicas

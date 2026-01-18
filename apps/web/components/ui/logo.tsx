@@ -1,5 +1,6 @@
 // ===========================================
-// OpoScore - Logo Component
+// OpoMetrics - Logo Component
+// Diseño orientado a métricas y datos
 // ===========================================
 
 'use client'
@@ -36,54 +37,63 @@ export function Logo({
   return (
     <div className={cn('flex items-center gap-2', className)}>
       <div className={cn(
-        'relative rounded-xl bg-gradient-to-br from-primary via-primary to-primary/80 p-1.5 shadow-lg',
+        'relative rounded-xl bg-gradient-to-br from-primary via-primary to-emerald-500 p-1.5 shadow-lg',
         animated && 'transition-transform hover:scale-105',
         sizeClasses[size]
       )}>
         {/* Glow effect */}
         <div className="absolute inset-0 rounded-xl bg-primary/20 blur-md -z-10" />
 
-        {/* Icon - Stylized "O" with score indicator */}
+        {/* Icon - Chart/Metrics design */}
         <svg
           viewBox="0 0 24 24"
           fill="none"
           className="w-full h-full text-primary-foreground"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Outer circle */}
-          <circle
-            cx="12"
-            cy="12"
-            r="9"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            className={animated ? 'animate-[spin_20s_linear_infinite]' : ''}
-            strokeDasharray="40 16"
-          />
-          {/* Inner progress arc */}
+          {/* Background grid dots */}
+          <circle cx="6" cy="6" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="12" cy="6" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="18" cy="6" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="6" cy="12" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="18" cy="12" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="6" cy="18" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="12" cy="18" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="18" cy="18" r="0.5" fill="currentColor" opacity="0.3" />
+
+          {/* Rising chart line */}
           <path
-            d="M12 5 A7 7 0 0 1 19 12"
+            d="M4 18 L8 14 L12 16 L16 10 L20 6"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
+            strokeLinejoin="round"
             fill="none"
-            opacity="0.6"
+            className={animated ? 'animate-[draw_2s_ease-in-out_infinite]' : ''}
           />
-          {/* Center dot with pulse */}
+
+          {/* Data points */}
+          <circle cx="8" cy="14" r="1.5" fill="currentColor" opacity="0.8" />
+          <circle cx="12" cy="16" r="1.5" fill="currentColor" opacity="0.8" />
+          <circle cx="16" cy="10" r="1.5" fill="currentColor" opacity="0.8" />
+
+          {/* Peak indicator with pulse */}
           <circle
-            cx="12"
-            cy="12"
-            r="3"
+            cx="20"
+            cy="6"
+            r="2"
             fill="currentColor"
             className={animated ? 'animate-pulse' : ''}
           />
-          {/* Score indicator line */}
+
+          {/* Arrow up indicator */}
           <path
-            d="M12 12 L16 8"
+            d="M20 4 L20 2 M19 3 L20 2 L21 3"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="1.5"
             strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.9"
           />
         </svg>
       </div>
@@ -95,11 +105,11 @@ export function Logo({
             textSizes[size]
           )}>
             <span className="text-primary">Opo</span>
-            <span className="text-foreground">Score</span>
+            <span className="text-foreground">Metrics</span>
           </span>
           {size !== 'sm' && (
             <span className="text-[10px] text-muted-foreground tracking-wider uppercase">
-              Academia IA
+              Predicción con IA
             </span>
           )}
         </div>
@@ -140,36 +150,44 @@ export function LogoLight({
           className="w-full h-full text-white"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle
-            cx="12"
-            cy="12"
-            r="9"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeDasharray="40 16"
-          />
+          {/* Grid dots */}
+          <circle cx="6" cy="6" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="12" cy="6" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="18" cy="6" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="6" cy="18" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="12" cy="18" r="0.5" fill="currentColor" opacity="0.3" />
+          <circle cx="18" cy="18" r="0.5" fill="currentColor" opacity="0.3" />
+
+          {/* Chart line */}
           <path
-            d="M12 5 A7 7 0 0 1 19 12"
+            d="M4 18 L8 14 L12 16 L16 10 L20 6"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
+            strokeLinejoin="round"
             fill="none"
-            opacity="0.6"
           />
-          <circle cx="12" cy="12" r="3" fill="currentColor" />
+
+          {/* Data points */}
+          <circle cx="8" cy="14" r="1.5" fill="currentColor" opacity="0.8" />
+          <circle cx="12" cy="16" r="1.5" fill="currentColor" opacity="0.8" />
+          <circle cx="16" cy="10" r="1.5" fill="currentColor" opacity="0.8" />
+          <circle cx="20" cy="6" r="2" fill="currentColor" />
+
+          {/* Arrow */}
           <path
-            d="M12 12 L16 8"
+            d="M20 4 L20 2 M19 3 L20 2 L21 3"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="1.5"
             strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       </div>
 
       {showText && (
         <span className={cn('font-bold tracking-tight text-white', textSizes[size])}>
-          OpoScore
+          OpoMetrics
         </span>
       )}
     </div>

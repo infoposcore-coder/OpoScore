@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Error Tracking Utility
+// OpoMetrics - Error Tracking Utility
 // ===========================================
 // Preparado para integrar con Sentry u otros servicios
 

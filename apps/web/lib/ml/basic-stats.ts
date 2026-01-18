@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Estadísticas Básicas (FREE)
+// OpoMetrics - Estadísticas Básicas (FREE)
 // Métricas disponibles para todos los usuarios
 // ===========================================
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Stripe Checkout API
+// OpoMetrics - Stripe Checkout API
 // ===========================================
 
 import { NextRequest, NextResponse } from 'next/server'

@@ -1,6 +1,6 @@
 {
-  "name": "OpoScore - Academia de Oposiciones",
-  "short_name": "OpoScore",
+  "name": "OpoMetrics - Academia de Oposiciones",
+  "short_name": "OpoMetrics",
   "description": "Prepara tus oposiciones con inteligencia artificial",
   "start_url": "/dashboard",
   "display": "standalone",

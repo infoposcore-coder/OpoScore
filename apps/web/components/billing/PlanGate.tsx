@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - PlanGate Component
+// OpoMetrics - PlanGate Component
 // ===========================================
 
 'use client'

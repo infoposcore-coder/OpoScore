@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Pull to Refresh Component
+// OpoMetrics - Pull to Refresh Component
 // Indicador visual de pull-to-refresh para mobile
 // ===========================================
 

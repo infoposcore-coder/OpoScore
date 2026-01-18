@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Topic Radar Chart
+// OpoMetrics - Topic Radar Chart
 // Grafico radar de dominio por temas
 // ===========================================
 

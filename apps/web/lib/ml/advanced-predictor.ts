@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Predictor Avanzado (ELITE)
+// OpoMetrics - Predictor Avanzado (ELITE)
 // Random Forest + Gradient Boosting (XGBoost)
 // ===========================================
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Comparación de Vacantes (ELITE)
+// OpoMetrics - Comparación de Vacantes (ELITE)
 // Muestra comparativa con plazas y competidores
 // ===========================================
 

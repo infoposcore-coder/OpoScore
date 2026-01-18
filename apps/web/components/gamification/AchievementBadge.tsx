@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Achievement Badge System
+// OpoMetrics - Achievement Badge System
 // Sistema de logros y badges gamificado
 // ===========================================
 
@@ -47,17 +47,17 @@ export const ACHIEVEMENTS: Achievement[] = [
     total: 100,
   },
   {
-    id: 'oposcore-50',
+    id: 'opometrics-50',
     nombre: 'En progreso',
-    descripcion: 'Alcanza OpoScore 50',
+    descripcion: 'Alcanza OpoMetrics 50',
     icono: '📈',
     color: 'from-green-500 to-emerald-500',
     desbloqueado: true,
   },
   {
-    id: 'oposcore-85',
+    id: 'opometrics-85',
     nombre: 'Casi listo',
-    descripcion: 'Alcanza OpoScore 85',
+    descripcion: 'Alcanza OpoMetrics 85',
     icono: '🏆',
     color: 'from-purple-500 to-violet-500',
     desbloqueado: false,

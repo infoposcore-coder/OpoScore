@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Sistema ML Avanzado
+// OpoMetrics - Sistema ML Avanzado
 // Módulo principal de Machine Learning
 // ===========================================
 

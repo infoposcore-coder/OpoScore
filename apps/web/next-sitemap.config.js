@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://oposcore.es',
+  siteUrl: process.env.SITE_URL || 'https://opometrics.es',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   robotsTxtOptions: {
@@ -9,7 +9,7 @@ module.exports = {
       { userAgent: '*', disallow: ['/api/', '/dashboard/', '/estudiar/', '/progreso/', '/simulacros/', '/perfil/', '/tutor/'] },
     ],
     additionalSitemaps: [
-      'https://oposcore.es/sitemap.xml',
+      'https://opometrics.es/sitemap.xml',
     ],
   },
   exclude: ['/api/*', '/dashboard/*', '/estudiar/*', '/progreso/*', '/simulacros/*', '/perfil/*', '/tutor/*', '/login', '/register'],

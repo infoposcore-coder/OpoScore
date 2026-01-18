@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Política de Privacidad
+// OpoMetrics - Política de Privacidad
 // ===========================================
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -7,8 +7,8 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export const metadata = {
-  title: 'Política de Privacidad - OpoScore',
-  description: 'Política de privacidad y protección de datos de OpoScore',
+  title: 'Política de Privacidad - OpoMetrics',
+  description: 'Política de privacidad y protección de datos de OpoMetrics',
 }
 
 export default function PrivacidadPage() {
@@ -31,7 +31,7 @@ export default function PrivacidadPage() {
           <CardContent className="prose prose-sm max-w-none dark:prose-invert">
             <h2 className="text-lg font-semibold mt-6 mb-3">1. Información que recopilamos</h2>
             <p className="text-muted-foreground mb-4">
-              En OpoScore recopilamos la siguiente información para proporcionarte nuestros servicios:
+              En OpoMetrics recopilamos la siguiente información para proporcionarte nuestros servicios:
             </p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
               <li>Información de cuenta: nombre, email y contraseña cifrada</li>
@@ -46,7 +46,7 @@ export default function PrivacidadPage() {
             </p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
               <li>Proporcionar y mejorar nuestros servicios de preparación de oposiciones</li>
-              <li>Personalizar tu experiencia de aprendizaje y calcular tu OpoScore</li>
+              <li>Personalizar tu experiencia de aprendizaje y calcular tu OpoMetrics</li>
               <li>Procesar pagos y gestionar tu suscripción</li>
               <li>Enviarte comunicaciones importantes sobre tu cuenta</li>
               <li>Mejorar nuestros algoritmos y contenidos</li>
@@ -81,8 +81,8 @@ export default function PrivacidadPage() {
             <h2 className="text-lg font-semibold mt-6 mb-3">6. Contacto</h2>
             <p className="text-muted-foreground mb-4">
               Para cualquier consulta relacionada con la privacidad, puedes contactarnos en{' '}
-              <a href="mailto:privacidad@oposcore.es" className="text-primary hover:underline">
-                privacidad@oposcore.es
+              <a href="mailto:privacidad@opometrics.es" className="text-primary hover:underline">
+                privacidad@opometrics.es
               </a>
             </p>
           </CardContent>

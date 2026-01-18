@@ -1,12 +1,12 @@
 // ===========================================
-// OpoScore - Página del Tutor IA
+// OpoMetrics - Página del Tutor IA
 // Requiere plan Premium o superior
 // ===========================================
 
 import { TutorPageContent } from './TutorPageContent'
 
 export const metadata = {
-  title: 'Tutor IA - OpoScore',
+  title: 'Tutor IA - OpoMetrics',
   description: 'Tu tutor personal de oposiciones con inteligencia artificial',
 }
 

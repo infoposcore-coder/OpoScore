@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Contextual Upgrade Prompts
+// OpoMetrics - Contextual Upgrade Prompts
 // Muestra prompts de upgrade en contextos específicos
 // ===========================================
 

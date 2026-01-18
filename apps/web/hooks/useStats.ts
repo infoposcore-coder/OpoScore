@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Hook para Estadísticas
+// OpoMetrics - Hook para Estadísticas
 // ===========================================
 
 'use client'

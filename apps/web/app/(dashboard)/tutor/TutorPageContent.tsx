@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Tutor Page Content (Client Component)
+// OpoMetrics - Tutor Page Content (Client Component)
 // ===========================================
 
 'use client'

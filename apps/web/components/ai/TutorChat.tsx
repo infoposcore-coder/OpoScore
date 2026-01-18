@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Componente Chat del Tutor IA
+// OpoMetrics - Componente Chat del Tutor IA
 // ===========================================
 
 'use client'

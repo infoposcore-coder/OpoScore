@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Componente StatsCard Premium
+// OpoMetrics - Componente StatsCard Premium
 // Tarjeta de estadisticas con animaciones
 // ===========================================
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Supabase Server Client
+// OpoMetrics - Supabase Server Client
 // ===========================================
 
 import { createServerClient } from '@supabase/ssr'

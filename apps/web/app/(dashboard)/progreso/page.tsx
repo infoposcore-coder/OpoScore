@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Progreso con Métricas ML
+// OpoMetrics - Página de Progreso con Métricas ML
 // Visualización completa del progreso y predicciones
 // ===========================================
 
@@ -10,7 +10,7 @@ import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ScoreGauge } from '@/components/oposcore/ScoreGauge'
+import { ScoreGauge } from '@/components/opometrics/ScoreGauge'
 import { StreakFire } from '@/components/gamification/StreakFire'
 import { AchievementGrid, ACHIEVEMENTS } from '@/components/gamification/AchievementBadge'
 import { BasicStats } from '@/components/stats/BasicStats'

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Tipos del Sistema ML
+// OpoMetrics - Tipos del Sistema ML
 // ===========================================
 
 import type { PlanType } from '@/lib/stripe/config'

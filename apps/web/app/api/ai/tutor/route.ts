@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - API Tutor IA
+// OpoMetrics - API Tutor IA
 // ===========================================
 
 import { NextRequest, NextResponse } from 'next/server'

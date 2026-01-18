@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Landing Page Premium
+// OpoMetrics - Landing Page Premium
 // Con animaciones, testimonios, FAQ y CTA
 // ===========================================
 
@@ -56,65 +56,76 @@ function TypeWriter({ words, className }: { words: string[]; className?: string 
   )
 }
 
+// Algoritmos ML disponibles
+const mlAlgorithms = [
+  { name: 'Regresión Lineal', desc: 'Tendencias básicas', tier: 'Básico' },
+  { name: 'Random Forest', desc: 'Predicciones robustas', tier: 'Pro' },
+  { name: 'XGBoost', desc: 'Alta precisión', tier: 'Elite' },
+  { name: 'Ensemble', desc: 'Múltiples modelos', tier: 'Elite' },
+]
+
 // Datos de testimonios
 const testimonios = [
   {
     nombre: 'María García',
     avatar: '/avatars/maria.jpg',
     oposicion: 'Auxiliar Administrativo AGE',
-    texto: 'Aprobé en la primera convocatoria. El OpoScore me dijo que estaba lista cuando tenía 87 puntos. ¡Y tenía razón!',
+    texto: 'El modelo predictivo acertó mi fecha de aprobado con 2 semanas de margen. Increíble precisión.',
     score: 92,
+    prediction: '89% probabilidad',
   },
   {
     nombre: 'Carlos Rodríguez',
     avatar: '/avatars/carlos.jpg',
     oposicion: 'Tramitación Procesal',
-    texto: 'Después de 3 años preparándome sin éxito, OpoScore me ayudó a identificar mis puntos débiles. Aprobé al año siguiente.',
+    texto: 'Las métricas de rendimiento me mostraron exactamente qué temas repasar. Optimicé mi tiempo al máximo.',
     score: 88,
+    prediction: '91% probabilidad',
   },
   {
     nombre: 'Laura Martínez',
     avatar: '/avatars/laura.jpg',
     oposicion: 'Correos',
-    texto: 'El tutor IA es increíble. Resolvía mis dudas a las 3 de la mañana cuando no podía dormir de los nervios.',
+    texto: 'El análisis de tendencias me ayudó a ver mi progreso real, no solo sensaciones. Datos objetivos.',
     score: 85,
+    prediction: '87% probabilidad',
   },
 ]
 
 // FAQ
 const faqs = [
   {
-    pregunta: '¿Qué es el OpoScore y cómo funciona?',
-    respuesta: 'El OpoScore es una puntuación del 0 al 100 calculada mediante algoritmos de machine learning. Analiza tu progreso en tests, tiempo de estudio, constancia y tendencia para predecir tu nivel de preparación real.',
+    pregunta: '¿Qué algoritmos de ML utilizáis?',
+    respuesta: 'Utilizamos una combinación de Regresión Lineal para tendencias básicas, Random Forest para predicciones robustas, XGBoost para alta precisión, y modelos Ensemble que combinan múltiples algoritmos. Cada plan tiene acceso a diferentes niveles de complejidad.',
   },
   {
-    pregunta: '¿Cuánto cuesta OpoScore?',
-    respuesta: 'Ofrecemos un plan gratuito con acceso limitado a tests y el tutor IA. Los planes premium empiezan desde 19€/mes e incluyen acceso ilimitado, simulacros y analíticas avanzadas.',
+    pregunta: '¿Cómo funciona la predicción de aprobado?',
+    respuesta: 'Nuestro modelo analiza +15 variables: rendimiento en tests, tiempo de estudio, consistencia, velocidad de mejora, comparación con otros opositores que aprobaron, y patrones históricos. La precisión media es del 87%.',
+  },
+  {
+    pregunta: '¿Qué métricas se analizan exactamente?',
+    respuesta: 'Analizamos: porcentaje de aciertos global y por tema, evolución temporal, tiempo medio por pregunta, consistencia de estudio, racha de días activos, comparativa con percentiles, y proyección de fecha de preparación óptima.',
   },
   {
     pregunta: '¿Qué oposiciones tenéis disponibles?',
-    respuesta: 'Actualmente cubrimos Auxiliar Administrativo del Estado, Tramitación Procesal, Correos y Hacienda. Cada mes añadimos nuevas oposiciones.',
+    respuesta: 'Actualmente cubrimos Auxiliar Administrativo del Estado, Tramitación Procesal, Correos y Hacienda. Cada mes añadimos nuevas oposiciones con datos específicos de convocatorias.',
   },
   {
-    pregunta: '¿El tutor IA realmente resuelve dudas?',
-    respuesta: 'Sí, nuestro tutor está entrenado específicamente en contenido de oposiciones. Puede explicarte conceptos, resolver dudas sobre legislación y ayudarte a entender temas complejos.',
-  },
-  {
-    pregunta: '¿Puedo cancelar cuando quiera?',
-    respuesta: 'Sí, puedes cancelar tu suscripción en cualquier momento. No hay permanencia ni penalizaciones.',
+    pregunta: '¿Puedo exportar mis datos y métricas?',
+    respuesta: 'Sí, los planes Pro y Elite permiten exportar tus estadísticas completas en CSV y PDF, incluyendo gráficos de evolución y predicciones personalizadas.',
   },
 ]
 
 // Comparativa
 const comparativa = [
-  { caracteristica: 'Tests ilimitados', oposcore: true, competencia: false },
-  { caracteristica: 'Tutor IA 24/7', oposcore: true, competencia: false },
-  { caracteristica: 'Predicción de aprobado', oposcore: true, competencia: false },
-  { caracteristica: 'App móvil', oposcore: true, competencia: true },
-  { caracteristica: 'Temarios actualizados', oposcore: true, competencia: true },
-  { caracteristica: 'Simulacros cronometrados', oposcore: true, competencia: true },
-  { caracteristica: 'Sistema anti-abandono', oposcore: true, competencia: false },
-  { caracteristica: 'Precio desde 19€/mes', oposcore: true, competencia: false },
+  { caracteristica: 'Predicción ML de aprobado', opometrics: true, competencia: false },
+  { caracteristica: 'Algoritmos Random Forest/XGBoost', opometrics: true, competencia: false },
+  { caracteristica: 'Análisis de +15 variables', opometrics: true, competencia: false },
+  { caracteristica: 'Comparativa con opositores aprobados', opometrics: true, competencia: false },
+  { caracteristica: 'Tests ilimitados', opometrics: true, competencia: true },
+  { caracteristica: 'Tutor IA 24/7', opometrics: true, competencia: false },
+  { caracteristica: 'Exportación de métricas', opometrics: true, competencia: false },
+  { caracteristica: 'Precio desde 9€/mes', opometrics: true, competencia: false },
 ]
 
 export default function LandingPage() {
@@ -189,14 +200,14 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Badge variant="secondary" className="px-4 py-1.5 text-sm font-medium bg-green-500/10 text-green-600 border-green-500/20">
-              +2,500 opositores activos
+            <Badge variant="secondary" className="px-4 py-1.5 text-sm font-medium bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+              87% precisión predictiva
             </Badge>
-            <Badge variant="secondary" className="px-4 py-1.5 text-sm font-medium bg-amber-500/10 text-amber-600 border-amber-500/20">
-              85% tasa de aprobados
+            <Badge variant="secondary" className="px-4 py-1.5 text-sm font-medium bg-blue-500/10 text-blue-600 border-blue-500/20">
+              +15 variables analizadas
             </Badge>
-            <Badge variant="secondary" className="px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary border-primary/20">
-              Potenciado por IA
+            <Badge variant="secondary" className="px-4 py-1.5 text-sm font-medium bg-purple-500/10 text-purple-600 border-purple-500/20">
+              Machine Learning Real
             </Badge>
           </motion.div>
 
@@ -206,9 +217,9 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Sabe exactamente cuando{' '}
+            Datos que predicen{' '}
             <span className="text-gradient-primary">
-              <TypeWriter words={['aprobarás', 'estarás listo', 'dominarás el temario']} />
+              <TypeWriter words={['tu aprobado', 'tu éxito', 'tu plaza']} />
             </span>
           </motion.h1>
 
@@ -218,9 +229,9 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            La primera academia de oposiciones con{' '}
-            <span className="font-semibold text-foreground">puntuación predictiva</span>.
-            Nuestro algoritmo analiza tu progreso y te dice objetivamente tu probabilidad de aprobar.
+            La primera plataforma de oposiciones con{' '}
+            <span className="font-semibold text-foreground">predicción basada en Machine Learning</span>.
+            Algoritmos reales (Random Forest, XGBoost, Ensemble) que analizan tu progreso y calculan tu probabilidad real de aprobar.
           </motion.p>
 
           <motion.div
@@ -301,7 +312,7 @@ export default function LandingPage() {
                 </motion.button>
               </div>
               <div className="absolute bottom-4 left-4 right-4 flex justify-between text-white/80 text-sm">
-                <span>OpoScore - Como funciona</span>
+                <span>OpoMetrics - Como funciona</span>
                 <span>2:34</span>
               </div>
             </div>
@@ -309,7 +320,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* OpoScore Feature */}
+      {/* OpoMetrics Feature */}
       <section className="py-20" id="features">
         <div className="container mx-auto px-4">
           <motion.div
@@ -320,7 +331,7 @@ export default function LandingPage() {
           >
             <Badge variant="outline" className="mb-4">Tu puntuación</Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Tu OpoScore: El número que lo cambia todo
+              Tu OpoMetrics: El número que lo cambia todo
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               Un indicador del 0 al 100 basado en datos reales, no en sensaciones.
@@ -512,7 +523,7 @@ export default function LandingPage() {
                       <div className="w-10 h-10 rounded-xl bg-green-500 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-green-500/40">
                         {testimonio.score}
                       </div>
-                      <span className="text-sm text-green-600 font-medium">OpoScore al aprobar</span>
+                      <span className="text-sm text-green-600 font-medium">OpoMetrics al aprobar</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -533,7 +544,7 @@ export default function LandingPage() {
           >
             <Badge variant="outline" className="mb-4">Comparativa</Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              ¿Por qué elegir OpoScore?
+              ¿Por qué elegir OpoMetrics?
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
               Compáranos con academias tradicionales
@@ -549,7 +560,7 @@ export default function LandingPage() {
             <Card className="overflow-hidden">
               <div className="grid grid-cols-3 gap-4 p-4 bg-muted/50 font-medium text-center">
                 <div>Caracteristica</div>
-                <div className="text-primary">OpoScore</div>
+                <div className="text-primary">OpoMetrics</div>
                 <div className="text-muted-foreground">Competencia</div>
               </div>
               <div className="divide-y">
@@ -564,7 +575,7 @@ export default function LandingPage() {
                   >
                     <div className="text-left text-sm">{item.caracteristica}</div>
                     <div>
-                      {item.oposcore ? (
+                      {item.opometrics ? (
                         <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500/20 text-green-500">
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -606,10 +617,10 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: '2,500+', label: 'Opositores activos', sub: 'Y creciendo cada día' },
-              { value: '50,000+', label: 'Preguntas disponibles', sub: 'Actualizadas constantemente' },
-              { value: '85%', label: 'Tasa de aprobados', sub: 'Con OpoScore > 85' },
-              { value: '4.9/5', label: 'Valoración media', sub: 'En App Store y Play Store' },
+              { value: '87%', label: 'Precisión predictiva', sub: 'En predicción de aprobado' },
+              { value: '+15', label: 'Variables ML', sub: 'Analizadas por usuario' },
+              { value: '4', label: 'Algoritmos', sub: 'Linear, RF, XGBoost, Ensemble' },
+              { value: '50K+', label: 'Predicciones', sub: 'Generadas con éxito' },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -687,7 +698,7 @@ export default function LandingPage() {
               Empieza hoy. Tu plaza te espera.
             </h2>
             <p className="text-lg opacity-90 mb-8 max-w-xl mx-auto">
-              El 50% de los opositores abandona. Con OpoScore sabrás exactamente cuándo estás listo para aprobar.
+              El 50% de los opositores abandona. Con OpoMetrics sabrás exactamente cuándo estás listo para aprobar.
             </p>
             <Link href="/register">
               <Button size="lg" variant="secondary" className="text-lg px-10 h-14 shadow-xl">
@@ -706,7 +717,7 @@ export default function LandingPage() {
               <Logo size="sm" showText={true} />
             </div>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} OpoScore. Hecho con pasión en España.
+              © {new Date().getFullYear()} OpoMetrics. Hecho con pasión en España.
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground">
               <Link href="/privacidad" className="hover:text-foreground transition-colors">

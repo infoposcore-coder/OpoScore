@@ -25,7 +25,7 @@ interface OposicionListItem {
 
 export const metadata: Metadata = {
   title: 'Oposiciones Disponibles | Academia Online',
-  description: 'Prepara tus oposiciones con OpoScore. Auxiliar Administrativo, Tramitación Procesal, Correos y más. Tests ilimitados, tutor IA y predicción de aprobado.',
+  description: 'Prepara tus oposiciones con OpoMetrics. Auxiliar Administrativo, Tramitación Procesal, Correos y más. Tests ilimitados, tutor IA y predicción de aprobado.',
   keywords: [
     'oposiciones',
     'preparar oposiciones',
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     'tests oposiciones',
   ],
   openGraph: {
-    title: 'Oposiciones Disponibles | OpoScore',
+    title: 'Oposiciones Disponibles | OpoMetrics',
     description: 'Encuentra tu oposición y empieza a prepararte con IA',
     type: 'website',
-    url: 'https://oposcore.es/oposiciones',
+    url: 'https://opometrics.es/oposiciones',
   },
   alternates: {
-    canonical: 'https://oposcore.es/oposiciones',
+    canonical: 'https://opometrics.es/oposiciones',
   },
 }
 
@@ -139,7 +139,7 @@ export default async function OposicionesPage() {
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="font-bold text-xl text-primary">
-            OpoScore
+            OpoMetrics
           </Link>
           <nav className="flex items-center gap-4">
             <Link href="/login">
@@ -256,10 +256,10 @@ export default async function OposicionesPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <Link href="/" className="font-bold text-lg text-primary">
-              OpoScore
+              OpoMetrics
             </Link>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} OpoScore. Hecho con pasión en España.
+              © {new Date().getFullYear()} OpoMetrics. Hecho con pasión en España.
             </p>
             <div className="flex gap-4 text-sm text-muted-foreground">
               <Link href="/privacidad" className="hover:text-foreground transition-colors">

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Login
+// OpoMetrics - Página de Login
 // ===========================================
 
 'use client'
@@ -74,7 +74,7 @@ function LoginForm() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <Link href="/" className="text-2xl font-bold text-primary mb-2 block">
-            OpoScore
+            OpoMetrics
           </Link>
           <CardTitle>Iniciar sesión</CardTitle>
           <CardDescription>
@@ -149,7 +149,7 @@ export default function LoginPage() {
       <div className="min-h-screen flex items-center justify-center p-4 bg-muted/30">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="text-2xl font-bold text-primary mb-2">OpoScore</div>
+            <div className="text-2xl font-bold text-primary mb-2">OpoMetrics</div>
             <CardTitle>Iniciar sesión</CardTitle>
             <CardDescription>Cargando...</CardDescription>
           </CardHeader>

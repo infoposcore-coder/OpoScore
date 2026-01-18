@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Calculador de Estadísticas y ML
+// OpoMetrics - Calculador de Estadísticas y ML
 // ===========================================
 
 import { SupabaseClient } from '@supabase/supabase-js'

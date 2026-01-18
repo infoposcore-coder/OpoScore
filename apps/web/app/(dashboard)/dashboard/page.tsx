@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Dashboard Principal
+// OpoMetrics - Dashboard Principal
 // ===========================================
 
 import { createClient } from '@/lib/supabase/server'
@@ -8,11 +8,11 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import Link from 'next/link'
-import { ScoreGauge } from '@/components/oposcore/ScoreGauge'
+import { ScoreGauge } from '@/components/opometrics/ScoreGauge'
 import { DashboardCharts } from '@/components/dashboard/DashboardCharts'
 
 export const metadata = {
-  title: 'Dashboard - OpoScore',
+  title: 'Dashboard - OpoMetrics',
 }
 
 // Detectar modo demo
@@ -22,7 +22,7 @@ const DEMO_MODE = !process.env.NEXT_PUBLIC_SUPABASE_URL
 const mockData = {
   user: {
     id: 'demo-user',
-    email: 'demo@oposcore.es',
+    email: 'demo@opometrics.es',
   },
   userOposicion: {
     id: 'demo-oposicion',
@@ -43,7 +43,7 @@ const mockData = {
     { id: '3', puntuacion: 68, created_at: new Date(Date.now() - 172800000).toISOString(), tipo: 'simulacro' },
     { id: '4', puntuacion: 90, created_at: new Date(Date.now() - 259200000).toISOString(), tipo: 'practica' },
   ],
-  opoScore: 67,
+  opoMetrics: 67,
   progresoTemario: 35,
 }
 
@@ -80,7 +80,7 @@ export default async function DashboardPage() {
   let racha: RachaData | null = mockData.racha
   let flashcardsPendientes: number | null = mockData.flashcardsPendientes
   let ultimosTests: TestData[] | null = mockData.ultimosTests
-  let opoScore = mockData.opoScore
+  let opoMetrics = mockData.opoMetrics
   let progresoTemario = mockData.progresoTemario
 
   // Solo consultar Supabase si no estamos en modo demo
@@ -142,7 +142,7 @@ export default async function DashboardPage() {
     ultimosTests = testsData
 
     // Reset valores para producción
-    opoScore = 0
+    opoMetrics = 0
     progresoTemario = 0
   }
 
@@ -151,7 +151,7 @@ export default async function DashboardPage() {
     return (
       <div className="p-6">
         <div className="max-w-2xl mx-auto text-center py-12">
-          <h1 className="text-2xl font-bold mb-4">¡Bienvenido a OpoScore!</h1>
+          <h1 className="text-2xl font-bold mb-4">¡Bienvenido a OpoMetrics!</h1>
           <p className="text-muted-foreground mb-8">
             Para empezar, selecciona la oposición que estás preparando.
           </p>
@@ -195,14 +195,14 @@ export default async function DashboardPage() {
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {/* OpoScore Card */}
+        {/* OpoMetrics Card */}
         <Card className="col-span-1 md:col-span-2 lg:col-span-1">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Tu OpoScore</CardTitle>
+            <CardTitle className="text-sm font-medium">Tu OpoMetrics</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-center">
-              <ScoreGauge score={opoScore} size="sm" />
+              <ScoreGauge score={opoMetrics} size="sm" />
             </div>
           </CardContent>
         </Card>
@@ -340,7 +340,7 @@ export default async function DashboardPage() {
 
       {/* Charts y Gráficos Premium */}
       <DashboardCharts
-        opoScore={opoScore}
+        opoMetrics={opoMetrics}
         rachaActual={racha?.dias_consecutivos || 0}
         mejorRacha={racha?.mejor_racha || 0}
         testsCompletados={ultimosTests?.length || 0}

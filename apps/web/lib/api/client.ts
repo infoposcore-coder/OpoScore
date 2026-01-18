@@ -24,7 +24,7 @@ type Respuesta = Tables['respuestas']['Row']
 type Profile = Tables['profiles']['Row']
 type SesionEstudio = Tables['sesiones_estudio']['Row']
 
-export interface OpoScoreData {
+export interface OpoMetricsData {
   score: number
   nivel: 'empezando' | 'progresando' | 'avanzando' | 'casi_listo' | 'preparado'
   tendencia: 'subiendo' | 'estable' | 'bajando'
@@ -41,7 +41,7 @@ export interface OpoScoreData {
 }
 
 export interface DashboardData {
-  opoScore: OpoScoreData
+  opoMetrics: OpoMetricsData
   racha: number
   rachaMaxima: number
   totalPreguntas: number
@@ -298,12 +298,12 @@ class APIClient {
   // OPOSCORE Y ESTADÍSTICAS
   // ----------------------------------------
 
-  async getOpoScore(oposicionId?: string): Promise<OpoScoreData> {
+  async getOpoMetrics(oposicionId?: string): Promise<OpoMetricsData> {
     const { data: user } = await this.supabase.auth.getUser()
     if (!user.user) throw new Error('No autenticado')
 
     // Valores por defecto
-    const defaultOpoScore: OpoScoreData = {
+    const defaultOpoMetrics: OpoMetricsData = {
       score: 0,
       nivel: 'empezando',
       tendencia: 'estable',
@@ -329,24 +329,24 @@ class APIClient {
         .limit(1)
         .single()
 
-      if (!userOposicion) return defaultOpoScore
+      if (!userOposicion) return defaultOpoMetrics
       oposicionId = (userOposicion as { oposicion_id: string }).oposicion_id
     }
 
-    // Llamar a la función RPC que calcula el OpoScore
-    const { data, error } = await this.supabase.rpc('calcular_oposcore', {
+    // Llamar a la función RPC que calcula el OpoMetrics
+    const { data, error } = await this.supabase.rpc('calcular_opometrics', {
       p_user_id: user.user.id,
       p_oposicion_id: oposicionId,
     } as never)
 
     if (error) {
-      return defaultOpoScore
+      return defaultOpoMetrics
     }
 
     // El RPC retorna un número (score), construir el objeto completo
     const score = typeof data === 'number' ? data : 0
     return {
-      ...defaultOpoScore,
+      ...defaultOpoMetrics,
       score,
       nivel: score >= 80 ? 'preparado' : score >= 60 ? 'avanzando' : score >= 40 ? 'progresando' : 'empezando',
     }
@@ -357,8 +357,8 @@ class APIClient {
     if (!user.user) throw new Error('No autenticado')
 
     // Ejecutar múltiples queries en paralelo
-    const [opoScore, profile, racha, stats, actividad] = await Promise.all([
-      this.getOpoScore(),
+    const [opoMetrics, profile, racha, stats, actividad] = await Promise.all([
+      this.getOpoMetrics(),
       this.getProfile(),
       this.getRacha(),
       this.getEstadisticas(),
@@ -366,7 +366,7 @@ class APIClient {
     ])
 
     return {
-      opoScore,
+      opoMetrics,
       racha: racha.actual,
       rachaMaxima: racha.maxima,
       totalPreguntas: stats.totalPreguntas,

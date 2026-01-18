@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - User Store (Zustand)
+// OpoMetrics - User Store (Zustand)
 // ===========================================
 
 import { create } from 'zustand'
@@ -11,7 +11,7 @@ interface UserState {
   profile: Profile | null
   oposicionActiva: UserOposicion | null
   racha: Racha | null
-  opoScore: number
+  opoMetrics: number
 
   // Estado de carga
   isLoading: boolean
@@ -21,7 +21,7 @@ interface UserState {
   setProfile: (profile: Profile | null) => void
   setOposicionActiva: (oposicion: UserOposicion | null) => void
   setRacha: (racha: Racha | null) => void
-  setOpoScore: (score: number) => void
+  setOpoMetrics: (score: number) => void
   setLoading: (loading: boolean) => void
   setError: (error: string | null) => void
   reset: () => void
@@ -31,7 +31,7 @@ const initialState = {
   profile: null,
   oposicionActiva: null,
   racha: null,
-  opoScore: 0,
+  opoMetrics: 0,
   isLoading: false,
   error: null,
 }
@@ -44,17 +44,17 @@ export const useUserStore = create<UserState>()(
       setProfile: (profile) => set({ profile }),
       setOposicionActiva: (oposicion) => set({ oposicionActiva: oposicion }),
       setRacha: (racha) => set({ racha }),
-      setOpoScore: (score) => set({ opoScore: score }),
+      setOpoMetrics: (score) => set({ opoMetrics: score }),
       setLoading: (loading) => set({ isLoading: loading }),
       setError: (error) => set({ error }),
       reset: () => set(initialState),
     }),
     {
-      name: 'oposcore-user',
+      name: 'opometrics-user',
       partialize: (state) => ({
         // Solo persistir datos no sensibles
         oposicionActiva: state.oposicionActiva,
-        opoScore: state.opoScore,
+        opoMetrics: state.opoMetrics,
       }),
     }
   )

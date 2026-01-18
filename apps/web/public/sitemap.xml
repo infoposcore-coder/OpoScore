@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://oposcore.es/forgot-password</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/simulacros</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/precios</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/privacidad</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/contacto</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/terminos</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/progreso</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/maintenance</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/perfil</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/dashboard</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/tutor</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/estudiar</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/oposiciones</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://oposcore.es/sitemap.xml</loc><lastmod>2026-01-17T17:38:33.293Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/forgot-password</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/contacto</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/privacidad</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/terminos</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/maintenance</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/precios</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/oposiciones</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://opometrics.es/sitemap.xml</loc><lastmod>2026-01-18T16:02:27.999Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

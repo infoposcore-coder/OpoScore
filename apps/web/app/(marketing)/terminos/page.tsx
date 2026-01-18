@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Términos de Uso
+// OpoMetrics - Términos de Uso
 // ===========================================
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -7,8 +7,8 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export const metadata = {
-  title: 'Términos de Uso - OpoScore',
-  description: 'Términos y condiciones de uso de OpoScore',
+  title: 'Términos de Uso - OpoMetrics',
+  description: 'Términos y condiciones de uso de OpoMetrics',
 }
 
 export default function TerminosPage() {
@@ -31,19 +31,19 @@ export default function TerminosPage() {
           <CardContent className="prose prose-sm max-w-none dark:prose-invert">
             <h2 className="text-lg font-semibold mt-6 mb-3">1. Aceptación de los términos</h2>
             <p className="text-muted-foreground mb-4">
-              Al acceder y utilizar OpoScore, aceptas estos términos de uso en su totalidad.
+              Al acceder y utilizar OpoMetrics, aceptas estos términos de uso en su totalidad.
               Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar nuestros servicios.
             </p>
 
             <h2 className="text-lg font-semibold mt-6 mb-3">2. Descripción del servicio</h2>
             <p className="text-muted-foreground mb-4">
-              OpoScore es una plataforma de preparación de oposiciones que ofrece:
+              OpoMetrics es una plataforma de preparación de oposiciones que ofrece:
             </p>
             <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
               <li>Tests y simulacros de examen</li>
               <li>Sistema de flashcards con repetición espaciada</li>
               <li>Tutor IA para resolver dudas</li>
-              <li>Seguimiento del progreso y predicción de resultados (OpoScore)</li>
+              <li>Seguimiento del progreso y predicción de resultados (OpoMetrics)</li>
             </ul>
 
             <h2 className="text-lg font-semibold mt-6 mb-3">3. Cuentas de usuario</h2>
@@ -63,7 +63,7 @@ export default function TerminosPage() {
 
             <h2 className="text-lg font-semibold mt-6 mb-3">5. Propiedad intelectual</h2>
             <p className="text-muted-foreground mb-4">
-              Todo el contenido de OpoScore (textos, preguntas, diseños, código) está protegido
+              Todo el contenido de OpoMetrics (textos, preguntas, diseños, código) está protegido
               por derechos de propiedad intelectual. No está permitida la reproducción,
               distribución o modificación sin autorización expresa.
             </p>
@@ -81,9 +81,9 @@ export default function TerminosPage() {
 
             <h2 className="text-lg font-semibold mt-6 mb-3">7. Limitación de responsabilidad</h2>
             <p className="text-muted-foreground mb-4">
-              OpoScore proporciona herramientas de estudio pero no garantiza el aprobado
+              OpoMetrics proporciona herramientas de estudio pero no garantiza el aprobado
               de ninguna oposición. Los resultados dependen del esfuerzo individual de cada usuario.
-              El OpoScore es una estimación basada en datos y no una predicción garantizada.
+              El OpoMetrics es una estimación basada en datos y no una predicción garantizada.
             </p>
 
             <h2 className="text-lg font-semibold mt-6 mb-3">8. Modificaciones</h2>
@@ -95,8 +95,8 @@ export default function TerminosPage() {
             <h2 className="text-lg font-semibold mt-6 mb-3">9. Contacto</h2>
             <p className="text-muted-foreground mb-4">
               Para cualquier consulta sobre estos términos, contacta con{' '}
-              <a href="mailto:legal@oposcore.es" className="text-primary hover:underline">
-                legal@oposcore.es
+              <a href="mailto:legal@opometrics.es" className="text-primary hover:underline">
+                legal@opometrics.es
               </a>
             </p>
           </CardContent>

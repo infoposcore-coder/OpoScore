@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - UpgradePrompt Component
+// OpoMetrics - UpgradePrompt Component
 // ===========================================
 
 'use client'

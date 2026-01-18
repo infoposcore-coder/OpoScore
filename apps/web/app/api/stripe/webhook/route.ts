@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Stripe Webhook Handler
+// OpoMetrics - Stripe Webhook Handler
 // ===========================================
 
 import { NextRequest, NextResponse } from 'next/server'

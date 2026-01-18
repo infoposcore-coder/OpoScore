@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Tipos de Base de Datos
+// OpoMetrics - Tipos de Base de Datos
 // ===========================================
 // Este archivo se regenerará con: npx supabase gen types typescript
 
@@ -355,7 +355,7 @@ export interface Database {
           tiempo_total_minutos: number
           preguntas_total: number
           preguntas_correctas: number
-          oposcore: number
+          opometrics: number
         }
         Insert: {
           id?: string
@@ -366,7 +366,7 @@ export interface Database {
           tiempo_total_minutos?: number
           preguntas_total?: number
           preguntas_correctas?: number
-          oposcore?: number
+          opometrics?: number
         }
         Update: {
           id?: string
@@ -377,7 +377,7 @@ export interface Database {
           tiempo_total_minutos?: number
           preguntas_total?: number
           preguntas_correctas?: number
-          oposcore?: number
+          opometrics?: number
         }
       }
       progreso_temas: {
@@ -620,7 +620,7 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      calcular_oposcore: {
+      calcular_opometrics: {
         Args: { p_user_id: string; p_oposicion_id: string }
         Returns: number
       }

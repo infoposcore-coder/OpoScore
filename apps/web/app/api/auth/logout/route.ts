@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - API Logout
+// OpoMetrics - API Logout
 // ===========================================
 
 import { createClient } from '@/lib/supabase/server'

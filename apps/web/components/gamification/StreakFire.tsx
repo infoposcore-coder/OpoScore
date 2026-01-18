@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Componente StreakFire
+// OpoMetrics - Componente StreakFire
 // Indicador de racha de estudio animado
 // ===========================================
 

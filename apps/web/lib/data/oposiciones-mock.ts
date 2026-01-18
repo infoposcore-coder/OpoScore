@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Datos Mock de Oposiciones
+// OpoMetrics - Datos Mock de Oposiciones
 // ===========================================
 
 export interface OposicionMock {

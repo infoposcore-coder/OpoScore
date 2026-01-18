@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Exam Timer Component
+// OpoMetrics - Exam Timer Component
 // Temporizador para simulacros y examenes
 // ===========================================
 

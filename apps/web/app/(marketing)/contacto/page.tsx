@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Contacto
+// OpoMetrics - Página de Contacto
 // ===========================================
 
 'use client'
@@ -137,8 +137,8 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
-                    <a href="mailto:soporte@oposcore.es" className="text-primary hover:underline">
-                      soporte@oposcore.es
+                    <a href="mailto:soporte@opometrics.es" className="text-primary hover:underline">
+                      soporte@opometrics.es
                     </a>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Simulacros - OpoScore',
+  title: 'Simulacros - OpoMetrics',
   description: 'Realiza simulacros de examen en condiciones reales',
 }
 

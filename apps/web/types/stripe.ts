@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Stripe Types
+// OpoMetrics - Stripe Types
 // ===========================================
 
 import type { PlanType } from '@/lib/stripe/config'

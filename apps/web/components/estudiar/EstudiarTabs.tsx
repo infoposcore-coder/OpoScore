@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Estudiar Tabs (Client Component)
+// OpoMetrics - Estudiar Tabs (Client Component)
 // Componente interactivo para navegar entre bloques
 // ===========================================
 

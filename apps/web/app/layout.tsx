@@ -20,40 +20,40 @@ const dmSerif = DM_Serif_Display({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://oposcore.es"),
+  metadataBase: new URL("https://opometrics.es"),
   title: {
-    default: "OpoScore - Academia de Oposiciones con IA | Predice tu Aprobado",
-    template: "%s | OpoScore",
+    default: "OpoMetrics - Predicción ML para Oposiciones | Machine Learning Real",
+    template: "%s | OpoMetrics",
   },
   description:
-    "La primera academia de oposiciones que te dice objetivamente cuándo estás listo para aprobar. Tests ilimitados, tutor IA 24/7 y sistema de predicción basado en datos.",
+    "Plataforma de oposiciones con predicción basada en Machine Learning. Algoritmos reales (Random Forest, XGBoost, Ensemble) que calculan tu probabilidad de aprobar con 87% de precisión.",
   keywords: [
-    "oposiciones",
-    "academia oposiciones online",
-    "preparar oposiciones",
-    "auxiliar administrativo",
-    "test oposiciones",
+    "oposiciones machine learning",
+    "predicción oposiciones",
+    "analytics oposiciones",
     "IA oposiciones",
-    "academia oposiciones",
+    "academia oposiciones online",
+    "test oposiciones",
+    "auxiliar administrativo",
     "oposiciones estado",
-    "tramitacion procesal",
-    "oposiciones correos",
+    "random forest oposiciones",
+    "métricas oposiciones",
     "simulacros oposiciones",
-    "tests oposiciones gratis",
+    "predicción aprobado",
   ],
-  authors: [{ name: "OpoScore", url: "https://oposcore.es" }],
-  creator: "OpoScore",
-  publisher: "OpoScore",
+  authors: [{ name: "OpoMetrics", url: "https://opometrics.es" }],
+  creator: "OpoMetrics",
+  publisher: "OpoMetrics",
   manifest: "/manifest.json",
   category: "education",
   classification: "Academia de Oposiciones Online",
   referrer: "origin-when-cross-origin",
   generator: "Next.js",
-  applicationName: "OpoScore",
+  applicationName: "OpoMetrics",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "OpoScore",
+    title: "OpoMetrics",
   },
   formatDetection: {
     telephone: false,
@@ -63,26 +63,26 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://oposcore.es",
-    siteName: "OpoScore",
-    title: "OpoScore - Academia de Oposiciones con IA",
+    url: "https://opometrics.es",
+    siteName: "OpoMetrics",
+    title: "OpoMetrics - Predicción ML para Oposiciones",
     description:
-      "La primera academia que te dice objetivamente cuándo estás listo para aprobar. Predicción basada en datos, tests ilimitados y tutor IA.",
+      "Machine Learning real para oposiciones. Algoritmos Random Forest, XGBoost y Ensemble que predicen tu aprobado con 87% de precisión.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "OpoScore - Academia de Oposiciones con IA",
+        alt: "OpoMetrics - Academia de Oposiciones con IA",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@oposcore",
-    creator: "@oposcore",
-    title: "OpoScore - Academia de Oposiciones con IA",
+    site: "@opometrics",
+    creator: "@opometrics",
+    title: "OpoMetrics - Academia de Oposiciones con IA",
     description:
       "La primera academia que te dice objetivamente cuándo estás listo para aprobar.",
     images: ["/og-image.png"],
@@ -100,9 +100,9 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://oposcore.es",
+    canonical: "https://opometrics.es",
     languages: {
-      "es-ES": "https://oposcore.es",
+      "es-ES": "https://opometrics.es",
     },
   },
   verification: {
@@ -153,7 +153,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192x192.svg" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="OpoScore" />
+        <meta name="apple-mobile-web-app-title" content="OpoMetrics" />
 
         {/* Microsoft Tiles */}
         <meta name="msapplication-TileColor" content="#2563eb" />
@@ -184,7 +184,7 @@ export default function RootLayout({
             <div>
               <h1 className="text-2xl font-bold mb-4">JavaScript Requerido</h1>
               <p className="text-muted-foreground">
-                OpoScore necesita JavaScript para funcionar correctamente.
+                OpoMetrics necesita JavaScript para funcionar correctamente.
                 Por favor, habilita JavaScript en tu navegador.
               </p>
             </div>

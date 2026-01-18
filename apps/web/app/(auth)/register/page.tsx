@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Registro
+// OpoMetrics - Página de Registro
 // ===========================================
 
 'use client'
@@ -119,7 +119,7 @@ export default function RegisterPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <Link href="/" className="text-2xl font-bold text-primary mb-2 block">
-            OpoScore
+            OpoMetrics
           </Link>
           <CardTitle>Crear cuenta</CardTitle>
           <CardDescription>

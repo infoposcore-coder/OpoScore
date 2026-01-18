@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Recuperación de Contraseña
+// OpoMetrics - Página de Recuperación de Contraseña
 // ===========================================
 
 'use client'
@@ -89,7 +89,7 @@ export default function ForgotPasswordPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <Link href="/" className="text-2xl font-bold text-primary mb-2 block">
-            OpoScore
+            OpoMetrics
           </Link>
           <CardTitle>Recuperar contraseña</CardTitle>
           <CardDescription>

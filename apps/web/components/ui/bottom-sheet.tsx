@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Bottom Sheet Component
+// OpoMetrics - Bottom Sheet Component
 // Para mejorar la experiencia mobile
 // ===========================================
 

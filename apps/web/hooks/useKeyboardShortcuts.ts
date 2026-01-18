@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Keyboard Shortcuts Hook
+// OpoMetrics - Keyboard Shortcuts Hook
 // Atajos de teclado globales
 // ===========================================
 

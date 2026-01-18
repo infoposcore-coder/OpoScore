@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Question Feedback Component
+// OpoMetrics - Question Feedback Component
 // Feedback detallado para preguntas de test
 // ===========================================
 
@@ -117,8 +117,8 @@ interface TestSummaryProps {
   total: number
   porcentaje: number
   tiempoTotal: number
-  opoScoreAnterior?: number
-  opoScoreNuevo?: number
+  opoMetricsAnterior?: number
+  opoMetricsNuevo?: number
   onContinue: () => void
   onRepetir?: () => void
 }
@@ -128,8 +128,8 @@ export function TestSummary({
   total,
   porcentaje,
   tiempoTotal,
-  opoScoreAnterior,
-  opoScoreNuevo,
+  opoMetricsAnterior,
+  opoMetricsNuevo,
   onContinue,
   onRepetir,
 }: TestSummaryProps) {
@@ -209,8 +209,8 @@ export function TestSummary({
             </div>
           </div>
 
-          {/* OpoScore Update */}
-          {opoScoreAnterior !== undefined && opoScoreNuevo !== undefined && (
+          {/* OpoMetrics Update */}
+          {opoMetricsAnterior !== undefined && opoMetricsNuevo !== undefined && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -218,16 +218,16 @@ export function TestSummary({
               className="p-4 rounded-lg bg-primary/5 border border-primary/20"
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Tu OpoScore</span>
+                <span className="text-sm font-medium">Tu OpoMetrics</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">{opoScoreAnterior}</span>
+                  <span className="text-muted-foreground">{opoMetricsAnterior}</span>
                   <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  <span className={`font-bold ${opoScoreNuevo > opoScoreAnterior ? 'text-green-600' : opoScoreNuevo < opoScoreAnterior ? 'text-red-600' : ''}`}>
-                    {opoScoreNuevo}
-                    {opoScoreNuevo > opoScoreAnterior && (
-                      <span className="text-xs ml-1">+{opoScoreNuevo - opoScoreAnterior}</span>
+                  <span className={`font-bold ${opoMetricsNuevo > opoMetricsAnterior ? 'text-green-600' : opoMetricsNuevo < opoMetricsAnterior ? 'text-red-600' : ''}`}>
+                    {opoMetricsNuevo}
+                    {opoMetricsNuevo > opoMetricsAnterior && (
+                      <span className="text-xs ml-1">+{opoMetricsNuevo - opoMetricsAnterior}</span>
                     )}
                   </span>
                 </div>

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Motor ML Principal
+// OpoMetrics - Motor ML Principal
 // Orquesta todos los módulos según el plan
 // ===========================================
 

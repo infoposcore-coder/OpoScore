@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Sistema Leitner Simplificado
+// OpoMetrics - Sistema Leitner Simplificado
 // ===========================================
 // Sistema de repaso espaciado con 5 cajas
 

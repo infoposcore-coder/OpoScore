@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Predicción Avanzada (ELITE)
+// OpoMetrics - Predicción Avanzada (ELITE)
 // Muestra predicciones con Random Forest/XGBoost
 // ===========================================
 

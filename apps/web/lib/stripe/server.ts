@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Stripe Server Client
+// OpoMetrics - Stripe Server Client
 // ===========================================
 
 import Stripe from 'stripe'
@@ -17,7 +17,7 @@ export function getStripe(): Stripe {
       apiVersion: '2023-10-16',
       typescript: true,
       appInfo: {
-        name: 'OpoScore',
+        name: 'OpoMetrics',
         version: '1.0.0',
       },
     })

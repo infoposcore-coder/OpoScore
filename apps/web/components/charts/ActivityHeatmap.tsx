@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Activity Heatmap
+// OpoMetrics - Activity Heatmap
 // Heatmap estilo GitHub de actividad de estudio
 // ===========================================
 

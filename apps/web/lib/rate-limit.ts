@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Rate Limiting Utility
+// OpoMetrics - Rate Limiting Utility
 // ===========================================
 // Soporta Redis (Upstash) en producción y memoria en desarrollo
 

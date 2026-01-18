@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Precios con 4 Planes
+// OpoMetrics - Página de Precios con 4 Planes
 // ===========================================
 
 'use client'
@@ -41,7 +41,7 @@ const planes = [
     features: [
       { texto: '25 preguntas/mes', incluido: true },
       { texto: '1 test diario', incluido: true },
-      { texto: 'OpoScore básico', incluido: true },
+      { texto: 'OpoMetrics básico', incluido: true },
       { texto: 'Acceso a 1 oposición', incluido: true },
       { texto: 'Estadísticas básicas', incluido: true },
       { texto: 'Ranking y tendencias', incluido: false },
@@ -650,7 +650,7 @@ function PreciosContent() {
           <div className="text-4xl mb-4">🛡️</div>
           <h3 className="text-xl font-bold mb-2">Garantía de devolución de 7 días</h3>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Si no estás satisfecho con OpoScore, te devolvemos el 100% de tu dinero durante los primeros 7 días. Sin preguntas.
+            Si no estás satisfecho con OpoMetrics, te devolvemos el 100% de tu dinero durante los primeros 7 días. Sin preguntas.
           </p>
         </motion.div>
       </div>

@@ -1,20 +1,20 @@
 // ===========================================
-// OpoScore - Hook useOpoScore
+// OpoMetrics - Hook useOpoMetrics
 // ===========================================
 
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
 import { createClient } from '@/lib/supabase/client'
-import { calcularOpoScore, calcularTendencia, type OpoScoreResult } from '@/lib/scoring/oposcore'
+import { calcularOpoMetrics, calcularTendencia, type OpoMetricsResult } from '@/lib/scoring/opometrics'
 
-interface UseOpoScoreOptions {
+interface UseOpoMetricsOptions {
   userId: string
   oposicionId: string
   enabled?: boolean
 }
 
-interface OpoScoreData extends OpoScoreResult {
+interface OpoMetricsData extends OpoMetricsResult {
   isLoading: boolean
   error: Error | null
   refetch: () => void
@@ -44,11 +44,11 @@ interface MetricaData {
   preguntas_correctas: number
 }
 
-export function useOpoScore({ userId, oposicionId, enabled = true }: UseOpoScoreOptions): OpoScoreData {
+export function useOpoMetrics({ userId, oposicionId, enabled = true }: UseOpoMetricsOptions): OpoMetricsData {
   const supabase = createClient()
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['oposcore', userId, oposicionId],
+    queryKey: ['opometrics', userId, oposicionId],
     queryFn: async () => {
       // Obtener progreso de temas
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -131,8 +131,8 @@ export function useOpoScore({ userId, oposicionId, enabled = true }: UseOpoScore
 
       const tendencia = calcularTendencia(aciertosDiarios)
 
-      // Calcular OpoScore
-      return calcularOpoScore({
+      // Calcular OpoMetrics
+      return calcularOpoMetrics({
         porcentaje_temario_completado: porcentajeCompletado,
         media_aciertos_tests: mediaAciertos,
         dias_racha_actual: diasRacha,
@@ -164,19 +164,19 @@ export function useOpoScore({ userId, oposicionId, enabled = true }: UseOpoScore
   }
 }
 
-// Hook para obtener historial de OpoScore
-export function useOpoScoreHistory({ userId, oposicionId, days = 30 }: UseOpoScoreOptions & { days?: number }) {
+// Hook para obtener historial de OpoMetrics
+export function useOpoMetricsHistory({ userId, oposicionId, days = 30 }: UseOpoMetricsOptions & { days?: number }) {
   const supabase = createClient()
 
   return useQuery({
-    queryKey: ['oposcore-history', userId, oposicionId, days],
+    queryKey: ['opometrics-history', userId, oposicionId, days],
     queryFn: async () => {
       const fechaInicio = new Date()
       fechaInicio.setDate(fechaInicio.getDate() - days)
 
       const { data, error } = await supabase
         .from('metricas_diarias')
-        .select('fecha, oposcore')
+        .select('fecha, opometrics')
         .eq('user_id', userId)
         .eq('oposicion_id', oposicionId)
         .gte('fecha', fechaInicio.toISOString().split('T')[0])

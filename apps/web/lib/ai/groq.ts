@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Cliente Groq API
+// OpoMetrics - Cliente Groq API
 // ===========================================
 
 import { openRouterFallback } from './openrouter'

@@ -11,20 +11,20 @@ export function OrganizationJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
-    name: 'OpoScore',
-    alternateName: 'Academia OpoScore',
-    url: 'https://oposcore.es',
-    logo: 'https://oposcore.es/icons/icon-512x512.svg',
+    name: 'OpoMetrics',
+    alternateName: 'Academia OpoMetrics',
+    url: 'https://opometrics.es',
+    logo: 'https://opometrics.es/icons/icon-512x512.svg',
     description: 'Academia de oposiciones online con IA predictiva. La primera plataforma que te dice objetivamente cuándo estás listo para aprobar.',
     foundingDate: '2024',
     sameAs: [
-      'https://twitter.com/oposcore',
-      'https://instagram.com/oposcore',
-      'https://linkedin.com/company/oposcore',
+      'https://twitter.com/opometrics',
+      'https://instagram.com/opometrics',
+      'https://linkedin.com/company/opometrics',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'contacto@oposcore.es',
+      email: 'contacto@opometrics.es',
       contactType: 'customer service',
       availableLanguage: ['Spanish'],
       areaServed: 'ES',
@@ -55,16 +55,16 @@ export function WebsiteJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'OpoScore',
-    alternateName: 'Academia OpoScore',
-    url: 'https://oposcore.es',
+    name: 'OpoMetrics',
+    alternateName: 'Academia OpoMetrics',
+    url: 'https://opometrics.es',
     description: 'Academia de oposiciones online con IA predictiva. Tests ilimitados y predicción de aprobado.',
     inLanguage: 'es-ES',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://oposcore.es/oposiciones?q={search_term_string}',
+        urlTemplate: 'https://opometrics.es/oposiciones?q={search_term_string}',
       },
       'query-input': 'required name=search_term_string',
     },
@@ -95,7 +95,7 @@ export function CourseJsonLd({
   name,
   description,
   url,
-  provider = 'OpoScore',
+  provider = 'OpoMetrics',
   price = 19,
   currency = 'EUR',
 }: CourseJsonLdProps) {
@@ -108,7 +108,7 @@ export function CourseJsonLd({
     provider: {
       '@type': 'Organization',
       name: provider,
-      sameAs: 'https://oposcore.es',
+      sameAs: 'https://opometrics.es',
     },
     inLanguage: 'es',
     courseMode: 'online',
@@ -119,7 +119,7 @@ export function CourseJsonLd({
       price: String(price),
       priceCurrency: currency,
       availability: 'https://schema.org/InStock',
-      url: url || 'https://oposcore.es/precios',
+      url: url || 'https://opometrics.es/precios',
     },
     hasCourseInstance: {
       '@type': 'CourseInstance',
@@ -180,7 +180,7 @@ export function SoftwareApplicationJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'OpoScore',
+    name: 'OpoMetrics',
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Web, iOS, Android',
     offers: {
@@ -196,7 +196,7 @@ export function SoftwareApplicationJsonLd() {
       worstRating: '1',
     },
     description: 'Academia de oposiciones con IA. Tests ilimitados y predicción de aprobado.',
-    downloadUrl: 'https://oposcore.es',
+    downloadUrl: 'https://opometrics.es',
     featureList: [
       'Tests ilimitados',
       'Tutor IA 24/7',

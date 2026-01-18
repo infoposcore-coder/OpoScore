@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Predictor con Regresión (PRO)
+// OpoMetrics - Predictor con Regresión (PRO)
 // Linear Regression + Logistic Regression
 // ===========================================
 

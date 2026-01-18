@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - PWA Install Prompt
+// OpoMetrics - PWA Install Prompt
 // ===========================================
 
 'use client'
@@ -68,7 +68,7 @@ export function InstallPrompt() {
           <div className="flex items-start gap-3">
             <span className="text-2xl">📱</span>
             <div className="flex-1">
-              <p className="font-medium text-sm">Instalar OpoScore</p>
+              <p className="font-medium text-sm">Instalar OpoMetrics</p>
               <p className="text-xs text-muted-foreground mt-1">
                 Accede más rápido y estudia sin conexión
               </p>

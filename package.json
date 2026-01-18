@@ -1,5 +1,5 @@
 {
-  "name": "oposcore",
+  "name": "opometrics",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,5 +15,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "pg": "^8.17.1",
+    "vercel": "^50.4.5"
+  }
 }

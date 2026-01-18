@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Perfil
+// OpoMetrics - Página de Perfil
 // Perfil de usuario con estadísticas y ajustes
 // ===========================================
 
@@ -14,7 +14,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ScoreGauge } from '@/components/oposcore/ScoreGauge'
+import { ScoreGauge } from '@/components/opometrics/ScoreGauge'
 import { StreakFire } from '@/components/gamification/StreakFire'
 import { AchievementGrid, ACHIEVEMENTS } from '@/components/gamification/AchievementBadge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
@@ -29,8 +29,8 @@ const DEFAULT_USER_DATA = {
   oposicion: 'Auxiliar Administrativo AGE',
   miembroDesde: '2024-11-15',
   plan: 'free',
-  opoScore: 67,
-  opoScoreChange: 5,
+  opoMetrics: 67,
+  opoMetricsChange: 5,
   racha: 12,
   rachaRecord: 23,
   testsCompletados: 156,
@@ -156,7 +156,7 @@ export default function PerfilPage() {
                 </p>
               </div>
               <div className="shrink-0">
-                <ScoreGauge score={userData.opoScore} size="md" />
+                <ScoreGauge score={userData.opoMetrics} size="md" />
               </div>
             </div>
           </CardContent>

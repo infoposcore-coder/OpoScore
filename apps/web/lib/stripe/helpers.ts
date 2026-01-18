@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Stripe Helper Functions
+// OpoMetrics - Stripe Helper Functions
 // ===========================================
 
 import { stripe } from './server'

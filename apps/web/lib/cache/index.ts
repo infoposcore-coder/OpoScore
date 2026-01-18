@@ -35,7 +35,7 @@ export const CacheTags = {
   // Datos de usuario (baja duración de caché)
   USER_PROFILE: (userId: string) => `profile-${userId}`,
   USER_STATS: (userId: string) => `stats-${userId}`,
-  USER_OPOSCORE: (userId: string) => `oposcore-${userId}`,
+  USER_OPOSCORE: (userId: string) => `opometrics-${userId}`,
   USER_RACHA: (userId: string) => `racha-${userId}`,
 
   // Datos dinámicos (sin caché o muy corta)

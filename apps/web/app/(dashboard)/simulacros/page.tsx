@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Simulacros
+// OpoMetrics - Página de Simulacros
 // Requiere plan Premium o superior
 // ===========================================
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Marketing Layout
+// OpoMetrics - Marketing Layout
 // ===========================================
 
 export default function MarketingLayout({

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Pagina de Test por Tema
+// OpoMetrics - Pagina de Test por Tema
 // Flujo completo de test con preguntas
 // ===========================================
 
@@ -174,8 +174,8 @@ export default function TestPage() {
           total={preguntas.length}
           porcentaje={porcentaje}
           tiempoTotal={tiempoTotal}
-          opoScoreAnterior={67}
-          opoScoreNuevo={porcentaje >= 70 ? 69 : 66}
+          opoMetricsAnterior={67}
+          opoMetricsNuevo={porcentaje >= 70 ? 69 : 66}
           onContinue={handleFinishTest}
           onRepetir={handleRepeatTest}
         />

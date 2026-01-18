@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Auth Layout
+// OpoMetrics - Auth Layout
 // ===========================================
 
 export default function AuthLayout({

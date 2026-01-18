@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Medidor de Predicción ML
+// OpoMetrics - Medidor de Predicción ML
 // Disponible para usuarios Pro+
 // ===========================================
 

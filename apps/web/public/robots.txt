@@ -13,7 +13,7 @@ Disallow: /perfil/
 Disallow: /tutor/
 
 # Host
-Host: https://oposcore.es
+Host: https://opometrics.es
 
 # Sitemaps
-Sitemap: https://oposcore.es/sitemap.xml
+Sitemap: https://opometrics.es/sitemap.xml

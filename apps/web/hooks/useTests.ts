@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Hook useTests
+// OpoMetrics - Hook useTests
 // ===========================================
 
 'use client'
@@ -170,7 +170,7 @@ export function useSubmitTest() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tests'] })
-      queryClient.invalidateQueries({ queryKey: ['oposcore'] })
+      queryClient.invalidateQueries({ queryKey: ['opometrics'] })
     },
   })
 }

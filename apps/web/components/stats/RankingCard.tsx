@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Tarjeta de Ranking
+// OpoMetrics - Tarjeta de Ranking
 // Disponible para usuarios Básico+
 // ===========================================
 

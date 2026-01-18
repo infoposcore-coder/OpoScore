@@ -1,11 +1,11 @@
 // ===========================================
-// OpoScore - Algoritmo de Puntuación v1
+// OpoMetrics - Algoritmo de Puntuación v1
 // ===========================================
 // Score de 0-100 basado en múltiples factores (heurísticas sin ML)
 
 export type Tendencia = 'subiendo' | 'estable' | 'bajando'
 
-export interface OpoScoreInput {
+export interface OpoMetricsInput {
   porcentaje_temario_completado: number  // 0-100
   media_aciertos_tests: number           // 0-100
   dias_racha_actual: number
@@ -14,7 +14,7 @@ export interface OpoScoreInput {
   dias_hasta_examen: number | null
 }
 
-export interface OpoScoreResult {
+export interface OpoMetricsResult {
   score: number
   nivel: 'empezando' | 'en_progreso' | 'avanzando' | 'casi_listo' | 'preparado'
   color: string
@@ -50,7 +50,7 @@ const NIVELES = [
   { max: 100, nivel: 'preparado', color: '#22C55E', mensaje: '¡Preparado para aprobar!' }
 ] as const
 
-export function calcularOpoScore(input: OpoScoreInput): OpoScoreResult {
+export function calcularOpoMetrics(input: OpoMetricsInput): OpoMetricsResult {
   // Factor: Temario completado
   const scoreCompletado = input.porcentaje_temario_completado * WEIGHTS.completado
 
@@ -78,7 +78,7 @@ export function calcularOpoScore(input: OpoScoreInput): OpoScoreResult {
 
   return {
     score,
-    nivel: nivelInfo.nivel as OpoScoreResult['nivel'],
+    nivel: nivelInfo.nivel as OpoMetricsResult['nivel'],
     color: nivelInfo.color,
     mensaje: nivelInfo.mensaje,
     desglose: {
@@ -113,16 +113,16 @@ export function calcularTendencia(aciertosDiarios: number[]): Tendencia {
 
 // Estimar fecha de preparación basada en progreso actual
 export function estimarFechaPreparacion(
-  oposcore: number,
+  opometrics: number,
   tendencia: Tendencia,
   diasEstudiando: number
 ): Date | null {
-  if (oposcore >= 85) {
+  if (opometrics >= 85) {
     return new Date() // Ya está preparado
   }
 
   // Puntos que faltan para llegar a 85
-  const puntosFaltantes = 85 - oposcore
+  const puntosFaltantes = 85 - opometrics
 
   // Tasa de mejora basada en tendencia y tiempo estudiando
   let tasaDiaria: number

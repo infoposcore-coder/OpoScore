@@ -60,7 +60,7 @@ const withPWA = require("next-pwa")({
       },
     },
     {
-      urlPattern: /^https:\/\/api\.oposcore\.es\/.*/i,
+      urlPattern: /^https:\/\/api\.opometrics\.es\/.*/i,
       handler: "NetworkFirst",
       options: {
         cacheName: "api-cache",

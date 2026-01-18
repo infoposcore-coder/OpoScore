@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Selector de Oposición (Client Component)
+// OpoMetrics - Selector de Oposición (Client Component)
 // Permite al usuario seleccionar su oposición activa
 // ===========================================
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - API de Estadísticas y Métricas ML
+// OpoMetrics - API de Estadísticas y Métricas ML
 // ===========================================
 
 import { NextRequest, NextResponse } from 'next/server'

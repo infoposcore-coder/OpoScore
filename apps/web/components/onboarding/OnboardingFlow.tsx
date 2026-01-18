@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Onboarding Flow
+// OpoMetrics - Onboarding Flow
 // Flujo de bienvenida para nuevos usuarios
 // ===========================================
 
@@ -12,7 +12,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
-import { ScoreGauge } from '@/components/oposcore/ScoreGauge'
+import { ScoreGauge } from '@/components/opometrics/ScoreGauge'
 
 interface OnboardingData {
   oposicion: string
@@ -218,12 +218,12 @@ export function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowProps) {
                   </div>
                   <h2 className="text-2xl font-bold mb-2">¡Todo listo!</h2>
                   <p className="text-muted-foreground mb-4">
-                    Tu OpoScore empieza en 0. Cada test, cada minuto de estudio,
+                    Tu OpoMetrics empieza en 0. Cada test, cada minuto de estudio,
                     te acercará a tu meta de 85+.
                   </p>
                   <div className="bg-primary/10 rounded-xl p-4 text-sm">
                     <p className="font-medium text-primary mb-1">Tu objetivo:</p>
-                    <p>Alcanzar OpoScore 85 para estar listo para aprobar</p>
+                    <p>Alcanzar OpoMetrics 85 para estar listo para aprobar</p>
                   </div>
                 </motion.div>
               )}

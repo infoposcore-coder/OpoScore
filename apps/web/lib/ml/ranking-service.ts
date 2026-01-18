@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Servicio de Ranking (BÁSICO)
+// OpoMetrics - Servicio de Ranking (BÁSICO)
 // Ranking, percentiles y tendencias
 // ===========================================
 

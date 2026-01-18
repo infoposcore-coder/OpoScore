@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Dashboard Content Wrapper
+// OpoMetrics - Dashboard Content Wrapper
 // Maneja el onboarding y contenido del dashboard
 // ===========================================
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Análisis por Bloques
+// OpoMetrics - Análisis por Bloques
 // Disponible para usuarios Pro+
 // ===========================================
 

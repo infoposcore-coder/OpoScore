@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Supabase Client (Browser)
+// OpoMetrics - Supabase Client (Browser)
 // ===========================================
 
 import { createBrowserClient } from '@supabase/ssr'

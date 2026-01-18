@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Stripe Configuration
+// OpoMetrics - Stripe Configuration
 // ===========================================
 
 export type PlanType = 'free' | 'basico' | 'pro' | 'elite'
@@ -22,7 +22,7 @@ export const PLANS: Record<PlanType, Plan> = {
     features: [
       '25 preguntas al mes',
       '1 test diario',
-      'OpoScore básico',
+      'OpoMetrics básico',
       'Acceso a 1 oposición',
     ],
   },
@@ -35,7 +35,7 @@ export const PLANS: Record<PlanType, Plan> = {
       '200 preguntas al mes',
       '5 tests diarios',
       'Flashcards básicas',
-      'OpoScore completo',
+      'OpoMetrics completo',
       'Acceso a 3 oposiciones',
       'Estadísticas básicas',
     ],
@@ -79,14 +79,14 @@ export const PLANS: Record<PlanType, Plan> = {
 export const PLAN_FEATURES: Record<PlanType, string[]> = {
   free: [
     'tests_basicos',
-    'oposcore_basico',
+    'opometrics_basico',
     'una_oposicion',
     // ML: Estadísticas básicas
     'ml_basic_stats',
   ],
   basico: [
     'tests_basicos',
-    'oposcore_basico',
+    'opometrics_basico',
     'flashcards_basicas',
     'tres_oposiciones',
     'estadisticas_basicas',
@@ -99,7 +99,7 @@ export const PLAN_FEATURES: Record<PlanType, string[]> = {
   ],
   pro: [
     'tests_basicos',
-    'oposcore_basico',
+    'opometrics_basico',
     'flashcards_basicas',
     'todas_oposiciones',
     'estadisticas_basicas',
@@ -124,7 +124,7 @@ export const PLAN_FEATURES: Record<PlanType, string[]> = {
   ],
   elite: [
     'tests_basicos',
-    'oposcore_basico',
+    'opometrics_basico',
     'flashcards_basicas',
     'todas_oposiciones',
     'estadisticas_basicas',

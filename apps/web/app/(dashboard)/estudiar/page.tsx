@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Página de Estudiar
+// OpoMetrics - Página de Estudiar
 // Vista principal de temas y acciones de estudio
 // ===========================================
 
@@ -9,12 +9,12 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
-import { ScoreGauge } from '@/components/oposcore/ScoreGauge'
+import { ScoreGauge } from '@/components/opometrics/ScoreGauge'
 import { EstudiarTabs } from '@/components/estudiar/EstudiarTabs'
 import { SeleccionarOposicion } from '@/components/estudiar/SeleccionarOposicion'
 
 export const metadata = {
-  title: 'Estudiar - OpoScore',
+  title: 'Estudiar - OpoMetrics',
 }
 
 // Detectar modo demo

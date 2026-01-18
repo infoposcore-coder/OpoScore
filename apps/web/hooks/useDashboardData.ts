@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Hook para datos del Dashboard
+// OpoMetrics - Hook para datos del Dashboard
 // ===========================================
 
 'use client'
@@ -8,8 +8,8 @@ import { useQuery } from '@tanstack/react-query'
 import { createClient } from '@/lib/supabase/client'
 
 interface DashboardStats {
-  opoScore: number
-  opoScoreChange: number
+  opoMetrics: number
+  opoMetricsChange: number
   racha: number
   mejorRacha: number
   testsHoy: number
@@ -38,8 +38,8 @@ interface DashboardData {
 // Datos mock para modo demo
 const MOCK_DATA: DashboardData = {
   stats: {
-    opoScore: 67,
-    opoScoreChange: 5,
+    opoMetrics: 67,
+    opoMetricsChange: 5,
     racha: 12,
     mejorRacha: 23,
     testsHoy: 3,
@@ -123,8 +123,8 @@ export function useDashboardData() {
         ).length || 0
 
         const stats: DashboardStats = {
-          opoScore: metricasHoy?.oposcore || MOCK_DATA.stats.opoScore,
-          opoScoreChange: 5, // TODO: Calcular diferencia real
+          opoMetrics: metricasHoy?.opometrics || MOCK_DATA.stats.opoMetrics,
+          opoMetricsChange: 5, // TODO: Calcular diferencia real
           racha: racha?.dias_consecutivos || 0,
           mejorRacha: racha?.mejor_racha || 0,
           testsHoy,

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - API Explicar Pregunta
+// OpoMetrics - API Explicar Pregunta
 // ===========================================
 
 import { NextRequest, NextResponse } from 'next/server'

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Análisis de Tendencias (BÁSICO)
+// OpoMetrics - Análisis de Tendencias (BÁSICO)
 // Muestra tendencias y medias móviles
 // ===========================================
 

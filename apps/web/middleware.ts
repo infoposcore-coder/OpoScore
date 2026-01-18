@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Next.js Middleware
+// OpoMetrics - Next.js Middleware
 // ===========================================
 // Maneja autenticación básica.
 // La protección por plan (premium/elite) se maneja

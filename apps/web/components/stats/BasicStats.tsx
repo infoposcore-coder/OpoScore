@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Componente de Estadísticas Básicas
+// OpoMetrics - Componente de Estadísticas Básicas
 // Disponible para todos los usuarios
 // ===========================================
 

@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - Prompts del Sistema
+// OpoMetrics - Prompts del Sistema
 // ===========================================
 
 export const SYSTEM_PROMPTS = {
@@ -134,13 +134,13 @@ Explica por qué la respuesta correcta es la correcta y por qué las demás no l
 
 export function buildCheckinPrompt(contexto: {
   diasSinEstudiar: number
-  ultimoOpoScore: number
+  ultimoOpoMetrics: number
   rachaRota: boolean
   oposicion: string
 }): string {
   const contextoTexto = `
 - Días sin estudiar: ${contexto.diasSinEstudiar}
-- Último OpoScore: ${contexto.ultimoOpoScore}/100
+- Último OpoMetrics: ${contexto.ultimoOpoMetrics}/100
 - Racha rota: ${contexto.rachaRota ? 'Sí' : 'No'}
 - Oposición: ${contexto.oposicion}
 `

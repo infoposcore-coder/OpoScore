@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - useOnboarding Hook
+// OpoMetrics - useOnboarding Hook
 // Gestiona el estado del onboarding
 // ===========================================
 
@@ -7,7 +7,7 @@
 
 import { useState, useEffect } from 'react'
 
-const ONBOARDING_KEY = 'oposcore_onboarding_completed'
+const ONBOARDING_KEY = 'opometrics_onboarding_completed'
 
 interface OnboardingState {
   completedAt?: string
