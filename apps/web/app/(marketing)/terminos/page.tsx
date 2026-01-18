@@ -57,7 +57,7 @@ export default function TerminosPage() {
             <p className="text-muted-foreground mb-4">
               Los planes de pago se facturan de forma recurrente según el periodo seleccionado.
               Puedes cancelar tu suscripción en cualquier momento desde tu perfil.
-              No hay reembolsos por periodos parciales, excepto durante los primeros 30 días
+              No hay reembolsos por periodos parciales, excepto durante los primeros 7 días
               según nuestra garantía de devolución.
             </p>
 

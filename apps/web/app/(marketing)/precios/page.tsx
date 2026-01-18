@@ -382,9 +382,9 @@ function PreciosContent() {
           transition={{ delay: 0.6 }}
         >
           <div className="text-4xl mb-4">🛡️</div>
-          <h3 className="text-xl font-bold mb-2">Garantía de devolución de 30 días</h3>
+          <h3 className="text-xl font-bold mb-2">Garantía de devolución de 7 días</h3>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Si no estás satisfecho con OpoScore, te devolvemos el 100% de tu dinero durante los primeros 30 días. Sin preguntas.
+            Si no estás satisfecho con OpoScore, te devolvemos el 100% de tu dinero durante los primeros 7 días. Sin preguntas.
           </p>
         </motion.div>
       </div>
