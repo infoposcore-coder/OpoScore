@@ -1,5 +1,5 @@
 // ===========================================
-// OpoScore - useSubscription Hook
+// OpoScore - useSubscription Hook (4 planes)
 // ===========================================
 
 'use client'
@@ -14,8 +14,11 @@ interface UseSubscriptionReturn {
   isLoading: boolean
   error: Error | null
   refetch: () => void
-  isPremium: boolean
+  plan: PlanType
+  isBasico: boolean
+  isPro: boolean
   isElite: boolean
+  isPaid: boolean
   canAccess: (feature: string) => boolean
 }
 
@@ -48,6 +51,7 @@ export function useSubscription(): UseSubscriptionReturn {
         // Si hay error, asumir plan gratuito
         return {
           planType: 'free',
+          plan: 'free',
           status: 'free',
           currentPeriodEnd: null,
           cancelAtPeriodEnd: false,
@@ -65,6 +69,7 @@ export function useSubscription(): UseSubscriptionReturn {
 
       return {
         planType: plan.plan_type as PlanType,
+        plan: plan.plan_type as PlanType,
         status: plan.status,
         currentPeriodEnd: plan.current_period_end
           ? new Date(plan.current_period_end)
@@ -80,8 +85,10 @@ export function useSubscription(): UseSubscriptionReturn {
 
   // Helpers derivados
   const planType = subscription?.planType || 'free'
-  const isPremium = planType === 'premium' || planType === 'elite'
+  const isBasico = planType === 'basico' || planType === 'pro' || planType === 'elite'
+  const isPro = planType === 'pro' || planType === 'elite'
   const isElite = planType === 'elite'
+  const isPaid = planType !== 'free'
 
   const canAccess = (feature: string): boolean => {
     return PLAN_FEATURES[planType]?.includes(feature) ?? false
@@ -92,8 +99,11 @@ export function useSubscription(): UseSubscriptionReturn {
     isLoading,
     error: error as Error | null,
     refetch,
-    isPremium,
+    plan: planType,
+    isBasico,
+    isPro,
     isElite,
+    isPaid,
     canAccess,
   }
 }
@@ -111,7 +121,8 @@ export function useFeatureAccess(feature: string): {
   // Determinar qué plan requiere esta feature
   const getRequiredPlan = (): PlanType => {
     if (PLAN_FEATURES.free.includes(feature)) return 'free'
-    if (PLAN_FEATURES.premium.includes(feature)) return 'premium'
+    if (PLAN_FEATURES.basico.includes(feature)) return 'basico'
+    if (PLAN_FEATURES.pro.includes(feature)) return 'pro'
     if (PLAN_FEATURES.elite.includes(feature)) return 'elite'
     return 'free'
   }
@@ -180,4 +191,13 @@ export function useBillingPortal() {
   }
 
   return { openPortal }
+}
+
+// Mantener compatibilidad con código antiguo que usa isPremium
+export function useLegacySubscription() {
+  const sub = useSubscription()
+  return {
+    ...sub,
+    isPremium: sub.isPro, // Mapear isPremium a isPro para compatibilidad
+  }
 }
